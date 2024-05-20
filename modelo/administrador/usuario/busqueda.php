@@ -116,6 +116,14 @@ include("../../sessiones/verificacion.php");
             <main class="main col">
                 <div class="row justify-content-start">
                     <div class="columna col-lg-12">
+                        <!-- Formulario de búsqueda -->
+                        <div class="container-fluid">
+                            <form class="d-flex input" action="busqueda.php" method="post">
+                                <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda">
+                                <button class="btn btn-outline-info" type="submit" name="enviar"><b>Buscar</b></button>
+                            </form>
+                        </div>
+                        <br>
                         <?php
 
                         // Verificar si se envió el formulario de búsqueda
@@ -149,7 +157,7 @@ include("../../sessiones/verificacion.php");
                                                 <th>Telefono</th>
                                                 <th>Correo</th>
                                                 <th>Rol</th>
-                                                <th>Operaciones</th>
+                                                <th class="text-center">Operaciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,15 +169,16 @@ include("../../sessiones/verificacion.php");
                                                 echo "<td>{$row['telefono']}</td>";
                                                 echo "<td>{$row['correo']}</td>";
                                                 echo "<td>{$row['rol']}</td>";
-                                                echo "<td><a href='datos.php' class='btn btn-primary'>Volver</a>
+                                                echo "<td class='text-center'>
+                                                        <a href='datos.php' class='btn btn-primary'>Volver</a>
                                                 
-                                                        <a href='editar.php?id=" . $row['id'] . "'>
+                                                        <a href='editar.php?id=" . $row['id'] . "'class='btn btn-warning'>
                                                             <svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                                                                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z' />
                                                                 <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z' />
                                                             </svg>
                                                         </a>
-                                                        <a href='eliminar.php?id=" . $row['id'] . "' data-id='" . $row['id'] . "'>
+                                                        <a href='eliminar.php?id=" . $row['id'] . "' data-id='" . $row['id'] . "  '  class='btn btn-danger eliminar'>
                                                             <svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='currentColor' class='bi bi-trash2-fill' viewBox='0 0 16 16'>
                                                                 <path d='M2.037 3.225A.7.7 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.7.7 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z' />
                                                             </svg>
@@ -180,7 +189,13 @@ include("../../sessiones/verificacion.php");
                                             ?>
                                         </tbody>
                                     </table>
-                                    <a href='datos.php' class='btn btn-primary'>Volver</a>
+
+                                    <?php if ($resultado->num_rows > 0) : ?>
+                                        <p>Se han encontrado resultados.</p>
+                                    <?php else : ?>
+                                        <p>No se han encontrado resultados</p>
+                                        <a href='datos.php' class='btn btn-primary'>Volver</a>
+                                    <?php endif ?>
                                 </div>
                             </div>
 

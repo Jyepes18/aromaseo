@@ -119,10 +119,6 @@ $usuarios = "SELECT u.*, r.rol
         <div class="toggle-sidebar">
             <i class='bx bx-menu'></i>
             <div class="text">
-                <p>
-                    <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'N/A'; ?>
-                    <?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : 'N/A'; ?>
-                </p>
             </div>
         </div>
 
@@ -130,7 +126,7 @@ $usuarios = "SELECT u.*, r.rol
             <div class="container">
                 <div class="container-fluid">
                     <form action="proActualizar.php" method="post" class="row g-3 mt-4">
-                        <h1 class="h1 text-center mx-auto mt-3">Registar un usuario nuevo</h1>
+                        <h1 class="h1 text-center mx-auto mt-3">Actualizar datos del usuario</h1>
                         <?php
                         $resultado = mysqli_query($conn, $usuarios);
                         while ($row = mysqli_fetch_assoc($resultado)) {
