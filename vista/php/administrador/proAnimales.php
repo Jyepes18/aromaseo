@@ -72,29 +72,29 @@ include("../../../modelo/sessiones/verificacion.php");
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
                         <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Automoviles</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="proAutos.php" class="link submenu-title">Productos Automoviles</a>
+                    <a href="../../../modelo/administrador/productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="prohogar.php" class="link">
                         <i class='bx bxs-home-heart'></i>
                         <span class="name">Productos Hogar</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Hogar</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="prohogar.php" class="link submenu-title">Productos Hogar</a>
+                    <a href="../../../modelo/administrador/productoHo/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -123,6 +123,8 @@ include("../../../modelo/sessiones/verificacion.php");
 
                 </div>
             </li>
+
+
         </ul>
     </div>
 
@@ -135,7 +137,7 @@ include("../../../modelo/sessiones/verificacion.php");
         </div>
         <div class="container">
             <div class="container-fluid">
-                <form action="../../../modelo/administrador/producto/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
+                <form action="../../../modelo/administrador/productoAn/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
                     <h1 class="h1 text-center mx-auto mt-3">Añadir un producto Animales</h1>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Imagen</label>
@@ -153,7 +155,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
                     <div class="col-6">
                         <label for="correo" class="form-label">Precio</label>
-                        <input type="number" class="form-control" name="precio" id="precio" step="0.01" />
+                        <input type="number" class="form-control" name="precio" id="precio" step="00.01" />
                     </div>
 
                     <div class="d-grid gap-2 mt-4">
@@ -164,9 +166,6 @@ include("../../../modelo/sessiones/verificacion.php");
             </div>
         </div>
     </section>
-
-
-
 
     <script src="../../../controlador/administrador/adminis.js"></script>
 </body>

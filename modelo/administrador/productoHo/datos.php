@@ -5,7 +5,7 @@ include("../../conexion.php");
 //Incluir verificacion para saber si la sesion esta iniciada
 include("../../sessiones/verificacion.php");
 
-$proAnimales = "SELECT * FROM productosanimales"
+$proAnimales = "SELECT * FROM productoshogar"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +21,7 @@ $proAnimales = "SELECT * FROM productosanimales"
 </head>
 
 <body>
-
-    <div class="sidebar close">
+<div class="sidebar close">
         <!--Logo-->
         <a href="#" class="logo-box">
             <i class='bx bxs-user-circle'></i>
@@ -71,7 +70,7 @@ $proAnimales = "SELECT * FROM productosanimales"
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/proAnimales.php" class="link submenu-title">Productos Animales</a>
-                    <a href="datos.php" class="link">Ver datos</a>
+                    <a href="../productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -99,7 +98,7 @@ $proAnimales = "SELECT * FROM productosanimales"
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/prohogar.php" class="link submenu-title">Productos Hogar</a>
-                    <a href="../productoHo/datos.php" class="link">Ver datos</a>
+                    <a href="datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 

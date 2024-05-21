@@ -1,24 +1,32 @@
 <?php
-//Incluir conexion a la bd
+// Incluir archivo de conexión
 include("../../conexion.php");
-//Verificar si la sesion esta inicada
+// Verificar si la sesión está iniciada
 include("../../sessiones/verificacion.php");
-//Traer el id 
-$id = $_GET['id'];
-$usuarios = "SELECT u.*, r.rol 
-             FROM usuarios u 
-             LEFT JOIN rol r ON u.id = r.usuario_id 
-             WHERE u.id = '$id'";
 
+// Traer el ID del producto
+$id = $_GET['id'];
+$consulta = "SELECT * FROM productoshogar WHERE id = ?";
+$stmt = mysqli_prepare($conn, $consulta);
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
+$row = mysqli_fetch_assoc($resultado);
+mysqli_stmt_close($stmt);
+
+if (!$row) {
+    echo "Producto no encontrado.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador</title>
+    <title>Actualizar Producto</title>
     <link rel="stylesheet" href="../../../node_modules/boxicons/css/boxicons.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../vista/css/adminis.css">
@@ -61,7 +69,7 @@ $usuarios = "SELECT u.*, r.rol
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/usuario.php" class="link submenu-title">Usuarios</a>
-                    <a href="datos.php" class="link">Ver Datos</a>
+                    <a href="../usuario/datos.php" class="link">Ver Datos</a>
                 </div>
             </li>
 
@@ -103,7 +111,7 @@ $usuarios = "SELECT u.*, r.rol
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/prohogar.php" class="link submenu-title">Productos Hogar</a>
-                    <a href="../productoHo/datos.php" class="link">Ver datos</a>
+                    <a href="datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -139,65 +147,75 @@ $usuarios = "SELECT u.*, r.rol
     <section class="home">
         <div class="toggle-sidebar">
             <i class='bx bx-menu'></i>
-            <div class="text">
-            </div>
+            <div class="text"></div>
         </div>
 
         <div class="main-content">
             <div class="container">
                 <div class="container-fluid">
-                    <form action="proActualizar.php" method="post" class="row g-3 mt-4">
-                        <h1 class="h1 text-center mx-auto mt-3">Actualizar datos del usuario</h1>
-                        <?php
-                        $resultado = mysqli_query($conn, $usuarios);
-                        while ($row = mysqli_fetch_assoc($resultado)) {
-                        ?>
-                            <input hidden type="text" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                    <form action="proActualizar.php" method="post" enctype="multipart/form-data" class="row g-3 mt-4">
+                        <h1 class="h1 text-center mx-auto mt-3">Actualizar Producto</h1>
+                        <input hidden type="text" name="id" class="form-control" value="<?php echo $row['id']; ?>">
 
-                            <div class="col-md-6">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $row['nombre']; ?>">
-                            </div>
+                        <div class="col-md-6">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" onchange="previewImage(event)">
+                            <input type="hidden" name="imagen_actual" value="<?php echo $row['imagen']; ?>">
+                            <?php if (!empty($row['imagen'])) : ?>
+                                <div style="display: flex; align-items: center; justify-content: center; background-color: #f2f2f2; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div style="text-align: center; margin-right: 20px;">
+                                        <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Imagen actual</p>
+                                        <img src="<?php echo htmlspecialchars($row['imagen']); ?>" alt="Imagen actual" width="100">
+                                    </div>
+                                    <span style="font-size: 24px; color: #666; margin: 0 20px;"> -> </span>
+                                    <div style="text-align: center; margin-left: 20px;">
+                                        <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Imagen nueva</p>
+                                        <img id="imagen-nueva-preview" alt="Nueva imagen" width="100" style="display: none;">
+                                    </div>
+                                </div>
+                            <?php endif; ?>
 
-                            <div class="col-md-6">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $row['apellido']; ?>">
-                            </div>
-                            <div class="col-6">
-                                <label for="telefono" class="form-label">Telefono</label>
-                                <input type="tel" class="form-control" id="telefono" name="telefono" value="<?php echo $row['telefono']; ?>" />
-                            </div>
 
-                            <div class="col-6">
-                                <label for="correo" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="usuario" name="correo" value="<?php echo $row['correo']; ?>" />
-                            </div>
 
-                            <div class="col-md-6">
-                                <label for="rol" class="form-label">Rol</label>
-                                <select id="rol" name="rol" class="form-select">
-                                    <option selected><?php echo $row['rol']; ?></option>
-                                    <option value="cliente">Cliente</option>
-                                    <option value="administrador">Administrador</option>
-                                </select>
-                            </div>
+                        </div>
 
-                            <div class="d-grid gap-2 mt-4">
-                                <button type="submit" name="registrar" class="btn btn-primary" style="padding: 10px 20px; font-size: 20px;">Actualizar datos</button>
-                            </div>
-                        <?php
-                        }
-                        mysqli_free_result($resultado);
-                        ?>
+                        <div class="col-md-6">
+                            <label for="titulo" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($row['titulo']); ?>">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><?php echo htmlspecialchars($row['descripcion']); ?></textarea>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" class="form-control" name="precio" value="<?php echo htmlspecialchars($row['precio']); ?>" id="precio" step="0.01">
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" name="registrar" class="btn btn-primary" style="padding: 10px 20px; font-size: 20px;">Actualizar datos</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-
     <script src="../../../controlador/administrador/adminis.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('imagen-nueva-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

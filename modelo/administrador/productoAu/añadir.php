@@ -41,14 +41,14 @@ $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
 
 // Preparar la consulta SQLs
-$stmt_productos = mysqli_prepare($conn, "INSERT INTO productosanimales (imagen, titulo, descripcion, precio ) VALUES (?, ?, ?, ?)");
+$stmt_productos = mysqli_prepare($conn, "INSERT INTO productosautos (imagen, titulo, descripcion, precio ) VALUES (?, ?, ?, ?)");
 
 // Vincular parámetros
 mysqli_stmt_bind_param($stmt_productos, "ssss", $imagen, $titulo, $descripcion, $precio);
 
 // Ejecutar la consulta
 if(mysqli_stmt_execute($stmt_productos)) {
-    header("location: ../../../vista/php/administrador/proAnimales.php");
+    header("location: ../../../vista/php/administrador/proautos.php");
 } else {
     echo "Error al añadir el producto: " . mysqli_error($conn);
 }

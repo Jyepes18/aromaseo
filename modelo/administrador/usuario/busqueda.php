@@ -26,7 +26,9 @@ include("../../sessiones/verificacion.php");
         <a href="#" class="logo-box">
             <i class='bx bxs-user-circle'></i>
             <div class="logo-name">
-                <p>Hola</p>
+                <p>Hola
+                    <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'N/A'; ?>
+                </p>
             </div>
         </a>
 
@@ -38,7 +40,6 @@ include("../../sessiones/verificacion.php");
                         <i class='bx bxs-grid-alt'></i>
                         <span class="name">Dashboard</span>
                     </a>
-
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/administrador.php" class="link submenu-title">Dashboard</a>
@@ -61,46 +62,71 @@ include("../../sessiones/verificacion.php");
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/proAnimales.php" class="link">
                         <i class='bx bxs-dog'></i>
                         <span class="name">Productos Animales</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Animales</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/proAnimales.php" class="link submenu-title">Productos Animales</a>
+                    <a href="../productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
                         <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Automoviles</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/proAutos.php" class="link submenu-title">Productos Automoviles</a>
+                    <a href="../productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/prohogar.php" class="link">
                         <i class='bx bxs-home-heart'></i>
                         <span class="name">Productos Hogar</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Hogar</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/prohogar.php" class="link submenu-title">Productos Hogar</a>
+                    <a href="../productoHo/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
+            <li class="dropdown">
+                <div class="title">
+                    <a href="" class="link">
+                        <i class='bx bxs-comment-error bx-flip-horizontal'></i>
+                        <span class="name">PQRS</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="" class="link submenu-title">PQRS</a>
+
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
+                    <a href="../../../modelo/sessiones/cerrar.php" class="link">
+                        <i class='bx bxs-exit bx-rotate-180'></i>
+                        <span class="name">Salir</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="../../../modelo/sessiones/cerrar.php" class="link submenu-title">Salir</a>
+
+                </div>
+            </li>
 
         </ul>
 

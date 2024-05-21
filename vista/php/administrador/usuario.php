@@ -67,35 +67,35 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
                 <div class="submenu">
                     <a href="proAnimales.php" class="link submenu-title">Productos Animales</a>
-                    <a href="../../../modelo/administrador/producto/datos.php" class="link">Ver datos</a>
+                    <a href="../../../modelo/administrador/productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
                         <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Automoviles</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="proAutos.php" class="link submenu-title">Productos Automoviles</a>
+                    <a href="../../../modelo/administrador/productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="prohogar.php" class="link">
                         <i class='bx bxs-home-heart'></i>
                         <span class="name">Productos Hogar</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Hogar</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="prohogar.php" class="link submenu-title">Productos Hogar</a>
+                    <a href="../../../modelo/administrador/productoHo/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -124,6 +124,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
                 </div>
             </li>
+
 
         </ul>
 

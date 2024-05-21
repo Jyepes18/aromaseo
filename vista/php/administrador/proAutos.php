@@ -66,35 +66,35 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
                 <div class="submenu">
                     <a href="proAnimales.php" class="link submenu-title">Productos Animales</a>
-                    <a href="../../../modelo/administrador/producto/datos.php" class="link">Ver datos</a>
+                    <a href="../../../modelo/administrador/productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
                         <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Automoviles</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="proAutos.php" class="link submenu-title">Productos Automoviles</a>
+                    <a href="../../../modelo/administrador/productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="prohogar.php" class="link">
                         <i class='bx bxs-home-heart'></i>
                         <span class="name">Productos Hogar</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Hogar</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="prohogar.php" class="link submenu-title">Productos Hogar</a>
+                    <a href="../../../modelo/administrador/productoHo/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -124,6 +124,7 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
             </li>
 
+
         </ul>
 
     </div>
@@ -133,16 +134,12 @@ include("../../../modelo/sessiones/verificacion.php");
         <div class="toggle-sidebar">
             <i class='bx bx-menu'></i>
             <div class="text">
-                <p>
-                    <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'N/A'; ?>
-                    <?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : 'N/A'; ?>
-                </p>
             </div>
         </div>
         <div class="container">
             <div class="container-fluid">
-                <form action="../../../modelo/administrador/productosAutos/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
-                    <h1 class="h1 text-center mx-auto mt-3">Añadir un producto Animales</h1>
+                <form action="../../../modelo/administrador/productoAu/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
+                    <h1 class="h1 text-center mx-auto mt-3">Añadir un producto para Autos</h1>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Imagen</label>
                         <input type="file" class="form-control" name="imagen" id="imagen">

@@ -69,7 +69,7 @@ include("../../sessiones/verificacion.php");
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/proAnimales.php" class="link submenu-title">Productos Animales</a>
-                    <a href="datos.php" class="link">Ver datos</a>
+                    <a href="../productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -97,7 +97,7 @@ include("../../sessiones/verificacion.php");
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/prohogar.php" class="link submenu-title">Productos Hogar</a>
-                    <a href="../productoHo/datos.php" class="link">Ver datos</a>
+                    <a href="datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -154,7 +154,7 @@ include("../../sessiones/verificacion.php");
                             $busqueda = $_POST['busqueda'];
 
                             // Preparar la consulta SQL
-                            $consulta = $conn->prepare("SELECT * FROM productosanimales WHERE imagen LIKE ? OR titulo LIKE ? OR descripcion LIKE ? OR precio LIKE ?");
+                            $consulta = $conn->prepare("SELECT * FROM productoshogar WHERE imagen LIKE ? OR titulo LIKE ? OR descripcion LIKE ? OR precio LIKE ?");
                             $busqueda_param = "%$busqueda%";
                             $consulta->bind_param("ssss", $busqueda_param, $busqueda_param, $busqueda_param, $busqueda_param);
 

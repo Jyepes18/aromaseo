@@ -43,7 +43,6 @@ $usuario = "SELECT * FROM usuarios"
                         <i class='bx bxs-grid-alt'></i>
                         <span class="name">Dashboard</span>
                     </a>
-
                 </div>
                 <div class="submenu">
                     <a href="../../../vista/php/administrador/administrador.php" class="link submenu-title">Dashboard</a>
@@ -66,43 +65,43 @@ $usuario = "SELECT * FROM usuarios"
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/proAnimales.php" class="link">
                         <i class='bx bxs-dog'></i>
                         <span class="name">Productos Animales</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Animales</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/proAnimales.php" class="link submenu-title">Productos Animales</a>
+                    <a href="../productoAn/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
                         <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Automoviles</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/proAutos.php" class="link submenu-title">Productos Automoviles</a>
+                    <a href="../productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../vista/php/administrador/prohogar.php" class="link">
                         <i class='bx bxs-home-heart'></i>
                         <span class="name">Productos Hogar</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">Productos Hogar</a>
-                    <a href="" class="link">Ver datos</a>
+                    <a href="../../../vista/php/administrador/prohogar.php" class="link submenu-title">Productos Hogar</a>
+                    <a href="../productoHo/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -132,11 +131,9 @@ $usuario = "SELECT * FROM usuarios"
                 </div>
             </li>
 
-
         </ul>
-
     </div>
-
+    
     <!--Home section-->
     <section class="home">
         <div class="toggle-sidebar">

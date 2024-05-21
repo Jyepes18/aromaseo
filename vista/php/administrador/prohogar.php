@@ -1,28 +1,5 @@
 <?php
-//Archivo para verificar sesion
 include("../../../modelo/sessiones/verificacion.php");
-
-//Arvivo de conexion
-include("../../../modelo/conexion.php");
-
-// Consulta para obtener el total de usuarios
-$sql = "SELECT COUNT(*) AS total_usuarios FROM usuarios";
-$resultado = $conn->query($sql);
-
-// Verificar si se obtuvo un resultado
-if ($resultado->num_rows > 0) {
-    // Obtener el resultado como un array asociativo
-    $fila = $resultado->fetch_assoc();
-    // Obtener el total de usuarios
-    $total_usuarios = $fila["total_usuarios"];
-    // Mostrar el resultado dentro de la etiqueta <p>
-
-} else {
-    echo "<p>No se encontraron usuarios.</p>";
-}
-
-// Cerrar la conexión
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -157,6 +134,36 @@ $conn->close();
         <div class="toggle-sidebar">
             <i class='bx bx-menu'></i>
             <div class="text">
+            </div>
+        </div>
+        <div class="container">
+            <div class="container-fluid">
+                <form action="../../../modelo/administrador/productoHo/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
+                    <h1 class="h1 text-center mx-auto mt-3">Añadir un producto para el hogar</h1>
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" name="imagen" id="imagen">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="apellido" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" name="titulo" id="titulo">
+                    </div>
+                    <div class="col-6">
+                        <label for="telefono" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="correo" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="precio" id="precio" step="0.01" />
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" name="registrar" class="btn btn-primary" style="padding: 10px 20px; font-size: 20px;">Registar producto</button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </section>
