@@ -1,14 +1,23 @@
 <?php
 include("../../../modelo/sessiones/verificacion.php");
-// Suponiendo que tienes un array de productos con información
-$productos = [
-    ["imagen" => "../../img/productos/desengrasante.png", "titulo" => "Desengrasante", "descripcion" => "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."],
-    // Agrega más productos aquí si es necesario
-    ["imagen" => "../../img/productos/hidratante.png", "titulo" => "Hidratante", "descripcion" => "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."],
-    ["imagen" => "../../img/productos/desengrasante.png", "titulo" => "Desengrasante", "descripcion" => "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."],
-    ["imagen" => "../../img/productos/desengrasante.png", "titulo" => "Desengrasante", "descripcion" => "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."],
+include("../../../modelo/conexion.php");
 
-];
+//Consulta sql 
+$sql = "SELECT imagen, titulo, precio, descripcion FROM productoshogar";
+$resultado = mysqli_query($conn, $sql);
+
+// Verificar si hay resultados
+if (mysqli_num_rows($resultado) > 0) {
+    // Array para almacenar los productos
+    $productos = array();
+
+    // Obtener los productos de la consulta
+    while ($row = mysqli_fetch_assoc($resultado)) {
+        $productos[] = $row;
+    }
+}
+// Cerrar la conexión
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +29,7 @@ $productos = [
     <link rel="stylesheet" href="../../css/formularios.css" />
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="shortcut icon" href="../../img/index/lg.png" />
-    <title>Hogar</title>
+    <title>Animales</title>
 </head>
 
 <body>
@@ -49,18 +58,24 @@ $productos = [
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
-            <?php foreach ($productos as $producto) : ?>
-                <div class="col" style="width: 30%;">
-                    <div class="card">
-                        <img src="<?php echo $producto['imagen']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $producto['titulo']; ?></h5>
-                            <p class="card-text"><?php echo $producto['descripcion']; ?></p>
+            <?php if (!empty($productos)) : ?>
+                <?php foreach ($productos as $producto) : ?>
+                    <div class="col" style="width: 30%;">
+                        <div class="card">
+                            <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="card-img-top" alt="Productos para  el hogar">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo htmlspecialchars($producto['titulo']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
+                                <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p class="text-center h3">No hay productos disponibles.</p>
+            <?php endif; ?>
         </div>
+        
     </div>
 
     <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.js"></script>

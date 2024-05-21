@@ -123,13 +123,13 @@ $conn->close();
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>

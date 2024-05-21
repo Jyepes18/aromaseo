@@ -62,3 +62,18 @@ CREATE TABLE IF NOT EXISTS productosHogar (
     precio DECIMAL(10, 2) NOT NULL,
 );
  ALTER TABLE productosHogar AUTO_INCREMENT = 1;
+
+ CREATE TABLE IF NOT EXISTS pqrs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    correoDos VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    imagen VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL
+ );
+
+ ALTER TABLE pqrs AUTO_INCREMENT = 1;

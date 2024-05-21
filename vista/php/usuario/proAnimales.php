@@ -62,12 +62,11 @@ mysqli_close($conn);
                 <?php foreach ($productos as $producto) : ?>
                     <div class="col" style="width: 30%;">
                         <div class="card">
-                            <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="card-img-top" alt="Productos para animales">
+                            <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="card-img-top" alt="Productos para animales" >
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($producto['titulo']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                                 <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
                             </div>
                         </div>
                     </div>
