@@ -45,7 +45,7 @@ if (isset($_POST['registrar'])) {
     }
     mysqli_stmt_bind_param($stmt_usuarios, "sssss", $nombre, $apellido, $telefono, $correo, $contrasena);
     if (!mysqli_stmt_execute($stmt_usuarios)) {
-        header("Location: ../../../vista/html/paginaError.html");
+        header("Location: ../../../vista/php/adminitrados/usuario.php?hola=Mundo");
         exit();
     }
 

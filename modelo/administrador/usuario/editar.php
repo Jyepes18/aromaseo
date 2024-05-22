@@ -170,7 +170,7 @@ $usuarios = "SELECT u.*, r.rol
 
                             <div class="col-6">
                                 <label for="correo" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="usuario" name="correo" value="<?php echo $row['correo']; ?>" />
+                                <input type="email" class="form-control" id="correo" name="correo" value="<?php echo $row['correo']; ?>" />
                             </div>
 
                             <div class="col-md-6">
@@ -196,8 +196,11 @@ $usuarios = "SELECT u.*, r.rol
     </section>
 
 
+    
     <script src="../../../controlador/administrador/adminis.js"></script>
+    <script src="../../../controlador/administrador/usuarios.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>

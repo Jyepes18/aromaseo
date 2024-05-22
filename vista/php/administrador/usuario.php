@@ -122,7 +122,7 @@ include("../../../modelo/sessiones/verificacion.php");
                 <div class="submenu">
                     <a href="../../../modelo/sessiones/cerrar.php" class="link submenu-title">Salir</a>
 
-                </div>
+                </div>..
             </li>
 
 
@@ -141,7 +141,7 @@ include("../../../modelo/sessiones/verificacion.php");
         <div class="main-content">
             <div class="container">
                 <div class="container-fluid">
-                    <form action="../../../modelo/administrador/usuario/anadir.php" method="post" class="row g-3 mt-4">
+                    <form action="../../../modelo/administrador/usuario/anadir.php" onsubmit="return validar();" method="post" class="row g-3 mt-4">
                         <h1 class="h1 text-center mx-auto mt-3">Registar un usuario nuevo</h1>
                         <div class="col-md-6">
                             <label for="nombre" class="form-label">Nombre</label>
@@ -194,6 +194,37 @@ include("../../../modelo/sessiones/verificacion.php");
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../../controlador/administrador/adminis.js"></script>
+    <script src="../../../controlador/administrador/usuarios.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var error = urlParams.get('error');
+            var hola = urlParams.get('hola');
+
+            // Si el parámetro 'error' es igual a 'Yaesta'
+            if (error === 'Yaesta') {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Ooopss',
+                    text: 'Este correo o telefono ya está registrados',
+                    confirmButtonColor: "#4CB2F8",
+                });
+            }
+
+            // Si el parámetro 'hola' es igual a 'Mundo'
+            if (hola === 'Mundo') {
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Usuario añadido con éxito',
+                    confirmButtonColor: "#4CB2F8",
+                });
+            }
+        });
+    </script>
+
+
 </body>
+
 
 </html>

@@ -76,7 +76,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
                     <p>
                         <i class='bx bxs-brain bx-flip-horizontal bx-spin'></i> Recuenda esta palabra para cambiar contraseña:
-                        "<?php echo (isset($_SESSION['respuesta']) && !empty($_SESSION['respuesta'])) ? $_SESSION['respuesta'] : "hh"; ?>"
+                        "<?php echo (isset($_SESSION['respuesta']) && !empty($_SESSION['respuesta'])) ? $_SESSION['respuesta'] : " "; ?>"
                     </p>
 
                     <p>

@@ -150,7 +150,7 @@ include("../../../modelo/sessiones/verificacion.php");
                     </div>
                     <div class="col-6">
                         <label for="telefono" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"  ></textarea>
                     </div>
 
                     <div class="col-6">

@@ -103,6 +103,26 @@
             }
         });
 
+        document.addEventListener("DOMContentLoaded", function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var error = urlParams.get('note');
+
+            // Si el parámetro 'bien' es igual a 'Bienvenido'
+            if (error === 'Encontramo') {
+                // Espera 3000 milisegundos (1 segundos) antes de mostrar el mensaje de bienvenida
+                setTimeout(function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oopss',
+                        text: 'Usuario o contraseña son invalidos',
+                        footer: "Intenta de nuevo",
+                        confirmButtonColor: "#4DB3F8",
+                        confirmButtonText: "SI"
+                    });
+                }, 1000);
+            }
+        });
+
     </script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

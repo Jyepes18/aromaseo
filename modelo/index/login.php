@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         exit();
     } else {
-        // Si las credenciales son incorrectas, mostrar un mensaje de error
-        header("Location: ../../vista/html/paginaError.html");
+        // Si las credenciales son incorrectas, 
+        header("Location: ../../vista/html/login.html?note=Encontramo");
         exit();
     }
 }

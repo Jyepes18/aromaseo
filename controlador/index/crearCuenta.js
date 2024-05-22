@@ -1,5 +1,5 @@
 function validar() {
-    var nombre, apellido, telefono, correo, contraseña, contraVerificada, pregunta;
+    var nombre, apellido, telefono, correo, contraseña, contraVerificada, pregunta, pregunta;
 
     nombre = document.getElementById("nombre").value;
     apellido = document.getElementById("apellido").value;
@@ -7,6 +7,7 @@ function validar() {
     correo = document.getElementById("correo").value;
     contraseña = document.getElementById("contraseña").value;
     contraVerificada = document.getElementById("contraVerificada").value;
+    pregunta = document.getElementById("pregunta").value;   
 
     expresionParaLetras = /^[a-zA-Z]+$/;
     expresionParaNumeros = /^[0-9]+$/;
@@ -121,11 +122,12 @@ function validar() {
             icon: "error"
         })
         return false;
-    }else if (pregunta < 5){
+    }else if (pregunta == ""){
         Swal.fire({
-            text: "La pregunta tinen que ser mas larga",
+            text: "La pregunta esta vacia",
             icon: "error"
         })
+        return false;
     }else if (!expresionParaLetras.test(pregunta)){
         Swal.fire({
             text: "La pregunta solo puede contener letras",
