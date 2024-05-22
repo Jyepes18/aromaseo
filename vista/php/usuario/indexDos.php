@@ -23,7 +23,7 @@ include("../../../modelo/sessiones/verificacion.php");
             <a href="#" class="logo"></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
-                <img src="../img/index/menu.png" alt="" />
+                <img src="../../img/index/menu.png" alt="" />
             </label>
             <br><br>
             <nav class="navbar">
@@ -71,7 +71,7 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
                 <div class="modal-body">
                     <p>
-                        <i class='bx bxs-chat bx-tada'></i><a href=""> Respuestas de PQRS</a>
+                        <i class='bx bxs-chat bx-tada'></i><a href="respuesta.php"> Respuestas de PQRS</a>
                     </p>
 
                     <p>

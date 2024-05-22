@@ -41,7 +41,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
     <div class="d-flex justify-content-center">
         <div class="form">
-            <form id="miFormulario" action="../../../modelo/administrador/pqrs/añadir.php" onsubmit="return validar();" method="POST" enctype="multipart/form-data">
+            <form id="miFormulario" action="../../../modelo/usuarios/pqrs/añadir.php" onsubmit="return validar();" method="POST" enctype="multipart/form-data">
                 <h1 class="form_title">Quejas y Reclamos</h1>
 
                 <div class="form-floating mb-3">

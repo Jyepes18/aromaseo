@@ -21,7 +21,7 @@ $proAnimales = "SELECT * FROM productoshogar"
 </head>
 
 <body>
-<div class="sidebar close">
+    <div class="sidebar close">
         <!--Logo-->
         <a href="#" class="logo-box">
             <i class='bx bxs-user-circle'></i>
@@ -248,6 +248,22 @@ $proAnimales = "SELECT * FROM productoshogar"
                     });
                 });
             });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var error = urlParams.get('bien');
+
+            // Si el parámetro 'bien' es igual a 'Bienvenido'
+            if (error === 'Actualizado') {
+                // Espera 3000 milisegundos (2 segundos) antes de mostrar el mensaje de bienvenida
+                setTimeout(function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Actulizado'
+                    });
+                }, 1000);
+            }
         });
     </script>
 

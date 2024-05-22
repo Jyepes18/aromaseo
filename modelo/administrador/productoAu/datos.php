@@ -249,6 +249,24 @@ $proAnimales = "SELECT * FROM productosautos"
                 });
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var error = urlParams.get('bien');
+
+            // Si el parámetro 'bien' es igual a 'Bienvenido'
+            if (error === 'Actualizado') {
+                // Espera 3000 milisegundos (2 segundos) antes de mostrar el mensaje de bienvenida
+                setTimeout(function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Actulizado'
+                    });
+                }, 1000);
+            }
+        });
+
+
     </script>
 
 </body>

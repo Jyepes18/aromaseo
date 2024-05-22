@@ -16,7 +16,7 @@
             <a href="#" class="logo"></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
-                <img src="../img/index/menu.png" alt="" />
+                <img src="../../img/index/menu.png" alt="" />
             </label>
             <br /><br />
             <nav class="navbar">
