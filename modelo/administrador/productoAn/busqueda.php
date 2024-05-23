@@ -103,13 +103,13 @@ include("../../sessiones/verificacion.php");
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -142,7 +142,7 @@ include("../../sessiones/verificacion.php");
                         <div class="container-fluid">
                             <form class="d-flex input" action="busqueda.php" method="post">
                                 <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda">
-                                <button class="btn btn-outline-info" type="submit" name="enviar"><b>Buscar</b></button>
+                                <button class="btn btn-outline-primary" type="submit" name="enviar"><b>Buscar</b></button>
                             </form>
                         </div>
                         <br>
@@ -188,10 +188,9 @@ include("../../sessiones/verificacion.php");
                                                 echo "<img src='" . $rutaImagen . "' alt='Imagen' width='150' height='150' />";
                                                 echo "</td>";
                                                 echo "<td>{$row['titulo']}</td>";
-                                                echo "<td>{$row['descripcion']}</td>";
+                                                echo "<td> <textarea class='form-control' id='descripcion' name='descripcion' rows='3' readonly style='min-height: 160px; max-height: 160px;'>{$row['descripcion']}</textarea></td>";
                                                 echo "<td>{$row['precio']}</td>";
-
-                                                echo "<td class='text-center'><a href='datos.php' class='btn btn-primary'>Volver</a>
+                                                echo "<td class='text-center'>
                                                         <a href='editar.php?id=" . $row['id'] . "' class='btn btn-warning'>
                                                             <svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                                                                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z' />
@@ -211,6 +210,7 @@ include("../../sessiones/verificacion.php");
                                     </table>
                                     <?php if ($resultado->num_rows > 0) : ?>
                                         <p>Se han encontrado resultados.</p>
+                                        <a href='datos.php' class='btn btn-primary'>Volver</a>
                                     <?php else : ?>
                                         <p>No se han encontrado resultados</p>
                                         <a href='datos.php' class='btn btn-primary'>Volver</a>
@@ -233,6 +233,35 @@ include("../../sessiones/verificacion.php");
 
     <script src="../../../controlador/administrador/adminis.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnEliminar = document.querySelectorAll('.eliminar');
+
+            btnEliminar.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const id = button.getAttribute('data-id');
+
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "¡No podrás revertir esto!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí, eliminarlo!',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `eliminar.php?id=${id}`;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

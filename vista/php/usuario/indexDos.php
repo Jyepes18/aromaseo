@@ -65,17 +65,15 @@ include("../../../modelo/sessiones/verificacion.php");
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hola <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : "N/A"; ?>
-                        <?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : "N/A"; ?> Bienvenido</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Hola <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : "N/A"; ?>
+                        <?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : "N/A"; ?>, Bienvenido
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>
-                        <i class='bx bxs-chat bx-tada'></i><a href="respuesta.php"> Respuestas de PQRS</a>
-                    </p>
-
-                    <p>
-                        <i class='bx bxs-brain bx-flip-horizontal bx-spin'></i> Recuenda esta palabra para cambiar contraseña:
+                        <i class='bx bxs-brain bx-flip-horizontal bx-spin'></i> Recuerda esta palabra para cambiar tu contraseña:
                         "<?php echo (isset($_SESSION['respuesta']) && !empty($_SESSION['respuesta'])) ? $_SESSION['respuesta'] : " "; ?>"
                     </p>
 
@@ -93,6 +91,7 @@ include("../../../modelo/sessiones/verificacion.php");
             </div>
         </div>
     </div>
+
 
 
     <div class="wrapper">

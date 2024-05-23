@@ -107,13 +107,13 @@ $usuario = "SELECT * FROM usuarios"
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -152,7 +152,7 @@ $usuario = "SELECT * FROM usuarios"
                             <div class="container-fluid">
                                 <form class="d-flex input" action="busqueda.php" method="post">
                                     <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda">
-                                    <button class="btn btn-outline-info" type="submit" name="enviar"><b>Buscar</b></button>
+                                    <button class="btn btn-outline-primary" type="submit" name="enviar"><b>Buscar</b></button>
                                 </form>
                             </div>
 

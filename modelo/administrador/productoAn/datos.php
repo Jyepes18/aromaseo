@@ -5,7 +5,7 @@ include("../../conexion.php");
 //Incluir verificacion para saber si la sesion esta iniciada
 include("../../sessiones/verificacion.php");
 
-$proAnimales = "SELECT * FROM productosanimales"
+$proAnimales = "SELECT * FROM productosanimales";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,13 +105,13 @@ $proAnimales = "SELECT * FROM productosanimales"
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -149,7 +149,7 @@ $proAnimales = "SELECT * FROM productosanimales"
                             <div class="container-fluid">
                                 <form class="d-flex input" action="busqueda.php" method="post">
                                     <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda">
-                                    <button class="btn btn-outline-info" type="submit" name="enviar"><b>Buscar</b></button>
+                                    <button class="btn btn-outline-primary" type="submit" name="enviar"><b>Buscar</b></button>
                                 </form>
                             </div>
 
@@ -183,8 +183,7 @@ $proAnimales = "SELECT * FROM productosanimales"
                                                     <?php echo $row["titulo"]; ?>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" readonly> <?php echo $row["descripcion"]; ?></textarea>
-
+                                                    <textarea class="form-control" id="descripcion_<?php echo $row['id']; ?>" name="descripcion_<?php echo $row['id']; ?>" rows="3" readonly style="min-height: 160px; max-height: 160px;"><?php echo $row["descripcion"]; ?></textarea>
                                                 </td>
                                                 <td>
                                                     <?php echo $row["precio"]; ?>
@@ -216,9 +215,6 @@ $proAnimales = "SELECT * FROM productosanimales"
                 </main>
             </div>
         </div>
-
-
-
     </section>
 
     <script src="../../../controlador/administrador/adminis.js"></script>
@@ -261,7 +257,7 @@ $proAnimales = "SELECT * FROM productosanimales"
                 setTimeout(function() {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Actulizado'
+                        title: 'Actualizado'
                     });
                 }, 1000);
             }

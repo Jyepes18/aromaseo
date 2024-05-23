@@ -100,13 +100,13 @@ include("../../../modelo/sessiones/verificacion.php");
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -138,7 +138,7 @@ include("../../../modelo/sessiones/verificacion.php");
         </div>
         <div class="container">
             <div class="container-fluid">
-                <form action="../../../modelo/administrador/productoAu/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
+                <form onsubmit="return validar();" action="../../../modelo/administrador/productoAu/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
                     <h1 class="h1 text-center mx-auto mt-3">Añadir un producto para Autos</h1>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Imagen</label>
@@ -151,7 +151,7 @@ include("../../../modelo/sessiones/verificacion.php");
                     </div>
                     <div class="col-6">
                         <label for="telefono" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"></textarea>
                     </div>
 
                     <div class="col-6">
@@ -168,6 +168,8 @@ include("../../../modelo/sessiones/verificacion.php");
         </div>
     </section>
     <script src="../../../controlador/administrador/adminis.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="../../../controlador/administrador/gProductos.js"></script>
 </body>
 
 </html>

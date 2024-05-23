@@ -117,13 +117,13 @@ if (!$row) {
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="" class="link">
+                    <a href="../pqrs/datos.php" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="" class="link submenu-title">PQRS</a>
+                    <a href="../pqrs/datos.php" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -175,19 +175,17 @@ if (!$row) {
                                 </div>
                             <?php endif; ?>
 
+                        </div>
 
-
+                        <div class="col-6">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 205px; min-height: 205px;"><?php echo htmlspecialchars($row['descripcion']); ?></textarea>
                         </div>
 
                         <div class="col-md-6">
                             <label for="titulo" class="form-label">Título</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($row['titulo']); ?>">
-                        </div>
-
-                        <div class="col-6">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><?php echo htmlspecialchars($row['descripcion']); ?></textarea>
-                        </div>
+                        </div>                     
 
                         <div class="col-6">
                             <label for="precio" class="form-label">Precio</label>
