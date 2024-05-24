@@ -149,14 +149,20 @@ include("../../../modelo/sessiones/verificacion.php");
                         <label for="apellido" class="form-label">Nombre del producto</label>
                         <input type="text" class="form-control" name="titulo" id="titulo">
                     </div>
+
                     <div class="col-6">
-                        <label for="telefono" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"></textarea>
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" id="cantidad">
                     </div>
 
                     <div class="col-6">
                         <label for="correo" class="form-label">Precio</label>
                         <input type="number" class="form-control" name="precio" id="precio" step="0.01" />
+                    </div>
+
+                    <div class="col-6">
+                        <label for="telefono" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"></textarea>
                     </div>
 
                     <div class="d-grid gap-2 mt-4">

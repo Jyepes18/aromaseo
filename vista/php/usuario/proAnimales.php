@@ -35,12 +35,15 @@ mysqli_close($conn);
             height: 400px;
             object-fit: cover;
         }
+
         .card-body {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
-        .card-title, .card-text {
+
+        .card-title,
+        .card-text {
             margin-bottom: auto;
         }
     </style>
@@ -64,6 +67,16 @@ mysqli_close($conn);
                             </svg>
                         </a>
                     </li>
+                    <li>
+                        <!-- Scrollable modal -->
+                        <a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                            </button>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -84,6 +97,16 @@ mysqli_close($conn);
                                 <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                                 <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
                             </div>
+                            <div class="card-footer">
+                                <form action="../../../modelo/usuarios/carrito/carritoAn.php" method="post" class="mt-auto">
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                    
+                                    <input type="hidden" name="cantidad" value="1">
+                                    
+                                    <button type="submit" name="agregar" class="btn btn-primary btn-block" onclick="agregarProducto(<?php echo $index; ?>)">Añadir al carrito</button>
+                                    <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary btn-block mt-2">Comprar</a>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -92,6 +115,30 @@ mysqli_close($conn);
             <p class="text-center h3">No hay productos disponibles.</p>
         <?php endif; ?>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Hola <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : "N/A"; ?>
+                        <?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : "N/A"; ?>, Bienvenido
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    
+
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

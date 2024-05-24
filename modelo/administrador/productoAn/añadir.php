@@ -38,13 +38,14 @@ if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 // Datos del formulario
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
+$cantidad = $_POST['cantidad'];
 $precio = $_POST['precio'];
 
 // Preparar la consulta SQLs
-$stmt_productos = mysqli_prepare($conn, "INSERT INTO productosanimales (imagen, titulo, descripcion, precio ) VALUES (?, ?, ?, ?)");
+$stmt_productos = mysqli_prepare($conn, "INSERT INTO productosanimales (imagen, titulo, descripcion, cantidad, precio ) VALUES (?, ?, ?, ?, ?)");
 
 // Vincular parámetros
-mysqli_stmt_bind_param($stmt_productos, "ssss", $imagen, $titulo, $descripcion, $precio);
+mysqli_stmt_bind_param($stmt_productos, "sssss", $imagen, $titulo, $descripcion, $cantidad, $precio);
 
 // Ejecutar la consulta
 if(mysqli_stmt_execute($stmt_productos)) {

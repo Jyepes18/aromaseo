@@ -132,7 +132,7 @@ include("../../../modelo/sessiones/verificacion.php");
         </div>
         <div class="container">
             <div class="container-fluid">
-                <form onsubmit="return validar();" action="../../../modelo/administrador/productoAn/añadir.php" method="post"  class="row g-3 mt-4" enctype="multipart/form-data">
+                <form onsubmit="return validar();" action="../../../modelo/administrador/productoAn/añadir.php" method="post" class="row g-3 mt-4" enctype="multipart/form-data">
                     <h1 class="h1 text-center mx-auto mt-3">Añadir un producto Animales</h1>
                     <div class="col-md-6">
                         <label for="imagen" class="form-label">Imagen</label>
@@ -145,13 +145,18 @@ include("../../../modelo/sessiones/verificacion.php");
                     </div>
 
                     <div class="col-6">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"></textarea>
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" id="cantidad">
                     </div>
 
                     <div class="col-6">
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" class="form-control" name="precio" id="precio" step="00.001">
+                    </div>
+
+                    <div class="col-6">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" style="max-height: 200px;"></textarea>
                     </div>
 
                     <div class="d-grid gap-2 mt-4">

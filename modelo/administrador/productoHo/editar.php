@@ -185,7 +185,12 @@ if (!$row) {
                         <div class="col-md-6">
                             <label for="titulo" class="form-label">Título</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($row['titulo']); ?>">
-                        </div>                     
+                        </div>
+
+                        <div class="col-6">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" name="cantidad" id="cantidad">
+                        </div>
 
                         <div class="col-6">
                             <label for="precio" class="form-label">Precio</label>

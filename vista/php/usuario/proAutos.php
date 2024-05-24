@@ -35,12 +35,15 @@ mysqli_close($conn);
             height: 400px;
             object-fit: cover;
         }
+
         .card-body {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
-        .card-title, .card-text {
+
+        .card-title,
+        .card-text {
             margin-bottom: auto;
         }
     </style>
@@ -84,6 +87,9 @@ mysqli_close($conn);
                                 <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                                 <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
                             </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-outline-info" onclick="location.href='compra.php'">Comprar</button>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -92,6 +98,7 @@ mysqli_close($conn);
             <p class="text-center h3">No hay productos disponibles.</p>
         <?php endif; ?>
     </div>
+
 
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -5,7 +5,7 @@ include("../../conexion.php");
 //Incluir verificacion para saber si la sesion esta iniciada
 include("../../sessiones/verificacion.php");
 
-$proAnimales = "SELECT * FROM productosanimales";
+$proAnimales = "SELECT * FROM productosanimales"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,13 +105,13 @@ $proAnimales = "SELECT * FROM productosanimales";
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="../pqrs/datos.php" class="link">
+                    <a href="" class="link">
                         <i class='bx bxs-comment-error bx-flip-horizontal'></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="../pqrs/datos.php" class="link submenu-title">PQRS</a>
+                    <a href="" class="link submenu-title">PQRS</a>
 
                 </div>
             </li>
@@ -183,7 +183,8 @@ $proAnimales = "SELECT * FROM productosanimales";
                                                     <?php echo $row["titulo"]; ?>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control" id="descripcion_<?php echo $row['id']; ?>" name="descripcion_<?php echo $row['id']; ?>" rows="3" readonly style="min-height: 160px; max-height: 160px;"><?php echo $row["descripcion"]; ?></textarea>
+                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" readonly style="min-height: 160px; max-height: 160px;"> <?php echo $row["descripcion"]; ?></textarea>
+
                                                 </td>
                                                 <td>
                                                     <?php echo $row["precio"]; ?>
@@ -257,7 +258,7 @@ $proAnimales = "SELECT * FROM productosanimales";
                 setTimeout(function() {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Actualizado'
+                        title: 'Actulizado'
                     });
                 }, 1000);
             }

@@ -190,6 +190,11 @@ if (!$row) {
                         </div>
 
                         <div class="col-6">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" name="cantidad" id="cantidad">
+                        </div>
+
+                        <div class="col-6">
                             <label for="precio" class="form-label">Precio</label>
                             <input type="number" class="form-control" name="precio" value="<?php echo htmlspecialchars($row['precio']); ?>" id="precio" step="0.01">
                         </div>

@@ -8,6 +8,7 @@ include("../../sessiones/verificacion.php");
 $id = $_POST['id'];
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
+$cantidad = $_POST['cantidad'];
 $precio = $_POST['precio'];
 
 // Verificar si se ha cargado una nueva imagen
@@ -38,12 +39,12 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 }
 
 // Preparar la consulta SQL
-$actualizar = "UPDATE productoshogar SET imagen = ?, titulo = ?, descripcion = ?, precio = ? WHERE id = ?";
+$actualizar = "UPDATE productoshogar SET imagen = ?, titulo = ?, descripcion = ?, cantidad = ?,  precio = ? WHERE id = ?";
 
 // Preparar la declaración
 if ($stmt = mysqli_prepare($conn, $actualizar)) {
     // Enlazar los parámetros
-    mysqli_stmt_bind_param($stmt, "ssssi", $imagen, $titulo, $descripcion, $precio, $id);
+    mysqli_stmt_bind_param($stmt, "sssssi", $imagen, $titulo, $descripcion, $cantidad, $precio, $id);
 
     // Ejecutar la declaración
     if (mysqli_stmt_execute($stmt)) {
