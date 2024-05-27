@@ -102,7 +102,7 @@ mysqli_close($conn);
                                     <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>">
                                     <input type="hidden" name="cantidad" value="1">
                                     <button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>
-                                    <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary btn-block mt-2">Comprar</a>
+                                    <a href="compraU.php?aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>
                                 </form>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ mysqli_close($conn);
                         <ul class="list-group">
                             <?php foreach ($_SESSION['carrito'] as $index => $item) : ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                     Producto: <?php echo htmlspecialchars($item['nombre']); ?> - <?php echo htmlspecialchars($item['precio']); ?>$ Cantidad: <?php echo htmlspecialchars($item['cantidad']); ?>
+                                    Producto: <?php echo htmlspecialchars($item['nombre']); ?> - <?php echo htmlspecialchars($item['precio']); ?>$ Cantidad: <?php echo htmlspecialchars($item['cantidad']); ?>
                                     <span>
                                         <a href="../../../modelo/usuarios/carrito/carritoAn.php?eliminar=<?php echo $index; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                                     </span>
@@ -141,7 +141,7 @@ mysqli_close($conn);
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary">Proceder al pago</a>
+                    <a href="../../../" class="btn btn-secondary">Proceder al pago</a>
                 </div>
             </div>
         </div>
@@ -158,6 +158,8 @@ mysqli_close($conn);
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>

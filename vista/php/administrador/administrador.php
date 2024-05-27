@@ -1,28 +1,6 @@
 <?php
 //Archivo para verificar sesion
 include("../../../modelo/sessiones/verificacion.php");
-
-//Arvivo de conexion
-include("../../../modelo/conexion.php");
-
-// Consulta para obtener el total de usuarios
-$sql = "SELECT COUNT(*) AS total_usuarios FROM usuarios";
-$resultado = $conn->query($sql);
-
-// Verificar si se obtuvo un resultado
-if ($resultado->num_rows > 0) {
-    // Obtener el resultado como un array asociativo
-    $fila = $resultado->fetch_assoc();
-    // Obtener el total de usuarios
-    $total_usuarios = $fila["total_usuarios"];
-    // Mostrar el resultado dentro de la etiqueta <p>
-
-} else {
-    echo "<p>No se encontraron usuarios.</p>";
-}
-
-// Cerrar la conexión
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -146,10 +124,7 @@ $conn->close();
 
                 </div>
             </li>
-
-
         </ul>
-
     </div>
 
     <!--Home section-->

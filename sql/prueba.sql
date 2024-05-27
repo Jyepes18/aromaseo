@@ -65,3 +65,24 @@ CREATE TABLE IF NOT EXISTS pqrs (
     imagen VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS compra (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    producto VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    fecha DATE NOT NULL,
+    precio INT NOT NULL,
+    cantidad VARCHAR(255) NOT NULL,
+    total INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS domicilio (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    domicilio VARCHAR(100) NOT NULL,
+    compra_id INT,
+    FOREIGN KEY (compra_id) REFERENCES compra(id)
+);
+

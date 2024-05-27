@@ -20,7 +20,7 @@ include("../../../modelo/sessiones/verificacion.php");
             <a href="#" class="logo"></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
-                <img src="../../img/index/menu.png" alt="" />
+                <img src="../../img/index/menu.png" alt="Menu" />
             </label>
             <br /><br />
             <nav class="navbar">
@@ -52,17 +52,8 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" readonly class="form-control" id="apellido" name="apellido" placeholder="Apellido" autocomplete="name" value="<?php echo isset($_SESSION['apellido']) ? htmlspecialchars($_SESSION['apellido']) : 'N/A'; ?>"  />
+                    <input type="text" readonly class="form-control" id="apellido" name="apellido" placeholder="Apellido" autocomplete="name" value="<?php echo isset($_SESSION['apellido']) ? htmlspecialchars($_SESSION['apellido']) : 'N/A'; ?>" />
                     <label for="apellido">Apellido</label>
-                </div>
-
-                <div class="col-12 mb-3">
-                    <label class="visually-hidden" for="presentacion">Presentación</label>
-                    <select class="form-select" id="presentacion" name="presentacion">
-                        <option selected>Presentación</option>
-                        <option value="1">10 litros</option>
-                        <option value="2">20 litros</option>
-                    </select>
                 </div>
 
                 <div class="form-floating mb-3">
@@ -71,7 +62,7 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" readonly class="form-control" id="correo" name="correo" placeholder="name@example.com" autocomplete="email"  value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo']) : 'N/A'; ?>" />
+                    <input type="email" readonly class="form-control" id="correo" name="correo" placeholder="name@example.com" autocomplete="email" value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo']) : 'N/A'; ?>" />
                     <label for="correo">Correo</label>
                 </div>
 
@@ -85,10 +76,6 @@ include("../../../modelo/sessiones/verificacion.php");
                     <label for="dia">Día</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="time" class="form-control" id="hora" name="hora" placeholder="Hora" autocomplete="name" />
-                    <label for="hora">Hora de llegada</label>
-                </div>
 
                 <div class="form-floating mb-3">
                     <input type="number" class="form-control" id="precio" name="precio" placeholder="Precio" autocomplete="cc-number" />
@@ -116,6 +103,8 @@ include("../../../modelo/sessiones/verificacion.php");
     <script src="../../../controlador/usuario/compra.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+
 </body>
 
 </html>
