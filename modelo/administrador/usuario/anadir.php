@@ -35,15 +35,16 @@ if (isset($_POST['registrar'])) {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $contrasena = $_POST['contrasena'];
+    $contrasenaDos = $contrasena;
     $respuesta = $_POST['respuesta'];
     $rol = $_POST['rol'];
 
     // Insertar datos en la tabla "usuarios"
-    $stmt_usuarios = mysqli_prepare($conn, "INSERT INTO usuarios (nombre, apellido, telefono, correo, contrasena) VALUES (?, ?, ?, ?, ?)");
+    $stmt_usuarios = mysqli_prepare($conn, "INSERT INTO usuarios (nombre, apellido, telefono, correo, contrasena, contrasenaDos) VALUES (?, ?, ?, ?, ?, ?)");
     if ($stmt_usuarios === false) {
         die("Error en la preparación de la consulta: " . mysqli_error($conn));
     }
-    mysqli_stmt_bind_param($stmt_usuarios, "sssss", $nombre, $apellido, $telefono, $correo, $contrasena);
+    mysqli_stmt_bind_param($stmt_usuarios, "ssssss", $nombre, $apellido, $telefono, $correo, $contrasena, $contrasenaDos);
     if (!mysqli_stmt_execute($stmt_usuarios)) {
         header("Location: ../../../vista/php/adminitrados/usuario.php?hola=Mundo");
         exit();

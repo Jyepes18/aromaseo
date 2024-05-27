@@ -3,7 +3,7 @@ include("../../../modelo/sessiones/verificacion.php");
 include("../../../modelo/conexion.php");
 
 //Consulta sql 
-$sql = "SELECT imagen, titulo, precio, descripcion FROM productosanimales";
+$sql = "SELECT id, imagen, titulo, precio, descripcion FROM productosanimales";
 $resultado = mysqli_query($conn, $sql);
 
 // Verificar si hay resultados
@@ -16,6 +16,7 @@ if (mysqli_num_rows($resultado) > 0) {
         $productos[] = $row;
     }
 }
+
 // Cerrar la conexión
 mysqli_close($conn);
 ?>
@@ -68,14 +69,11 @@ mysqli_close($conn);
                         </a>
                     </li>
                     <li>
-                        <!-- Scrollable modal -->
-                        <a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                </svg>
-                            </button>
-                        </a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                            </svg>
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -99,11 +97,11 @@ mysqli_close($conn);
                             </div>
                             <div class="card-footer">
                                 <form action="../../../modelo/usuarios/carrito/carritoAn.php" method="post" class="mt-auto">
-                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                    
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($producto['id']); ?>">
+                                    <input type="hidden" name="nombre" value="<?php echo htmlspecialchars($producto['titulo']); ?>">
+                                    <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>">
                                     <input type="hidden" name="cantidad" value="1">
-                                    
-                                    <button type="submit" name="agregar" class="btn btn-primary btn-block" onclick="agregarProducto(<?php echo $index; ?>)">Añadir al carrito</button>
+                                    <button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>
                                     <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary btn-block mt-2">Comprar</a>
                                 </form>
                             </div>
@@ -116,7 +114,6 @@ mysqli_close($conn);
         <?php endif; ?>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -128,18 +125,36 @@ mysqli_close($conn);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+                    <?php if (!empty($_SESSION['carrito'])) : ?>
+                        <ul class="list-group">
+                            <?php foreach ($_SESSION['carrito'] as $index => $item) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     Producto: <?php echo htmlspecialchars($item['nombre']); ?> - <?php echo htmlspecialchars($item['precio']); ?>$ Cantidad: <?php echo htmlspecialchars($item['cantidad']); ?>
+                                    <span>
+                                        <a href="../../../modelo/usuarios/carrito/carritoAn.php?eliminar=<?php echo $index; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else : ?>
+                        <p class="text-center">El carrito está vacío.</p>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    
-
-            
+                    <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary">Proceder al pago</a>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <?php
+    if (isset($_SESSION['mensaje_error'])) {
+        echo '<div class="alert alert-danger" role="alert">';
+        echo $_SESSION['mensaje_error'];
+        echo '</div>';
+        // Elimina el mensaje de la sesión para que no se muestre de nuevo
+        unset($_SESSION['mensaje_error']);
+    }
+    ?>
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
