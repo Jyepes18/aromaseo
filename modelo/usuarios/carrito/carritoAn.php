@@ -10,6 +10,7 @@ if (isset($_POST['agregar'])) {
 
     // Verifica la cantidad en la base de datos
     $query = "SELECT cantidad FROM productosanimales WHERE id = ?";
+    $query = "SELECT cantidad FROM productosautos WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -26,6 +27,7 @@ if (isset($_POST['agregar'])) {
             // Actualiza la cantidad en la base de datos
             $nuevaCantidad = $producto['cantidad'] - $cantidad;
             $updateQuery = "UPDATE productosanimales SET cantidad = ? WHERE id = ?";
+            $updateQuery = "UPDATE productosautos SET cantidad = ? WHERE id = ?";
             $updateStmt = $conn->prepare($updateQuery);
             $updateStmt->bind_param("ii", $nuevaCantidad, $id);
             $updateStmt->execute();
@@ -81,6 +83,7 @@ if (isset($_GET['eliminar'])) {
 
         // Actualiza la cantidad en la base de datos
         $query = "UPDATE productosanimales SET cantidad = cantidad + ? WHERE id = ?";
+        $query = "UPDATE productosautos SET cantidad = cantidad + ? WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ii", $cantidadDevuelta, $id);
         $stmt->execute();

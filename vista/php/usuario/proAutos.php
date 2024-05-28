@@ -3,7 +3,7 @@ include("../../../modelo/sessiones/verificacion.php");
 include("../../../modelo/conexion.php");
 
 //Consulta sql 
-$sql = "SELECT id, imagen, titulo, precio, descripcion FROM productoshogar";
+$sql = "SELECT id, imagen, titulo, precio, descripcion FROM productosautos";
 $resultado = mysqli_query($conn, $sql);
 
 // Verificar si hay resultados
@@ -96,13 +96,13 @@ mysqli_close($conn);
                                 <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
                             </div>
                             <div class="card-footer">
-                                <form action="../../../modelo/usuarios/carrito/carritoAu.php" method="post" class="mt-auto">
+                                <form action="../../../modelo/usuarios/carrito/carritoAn.php" method="post" class="mt-auto">
                                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($producto['id']); ?>">
                                     <input type="hidden" name="nombre" value="<?php echo htmlspecialchars($producto['titulo']); ?>">
                                     <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>">
                                     <input type="hidden" name="cantidad" value="1">
                                     <button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>
-                                    <a href="../../Pedido/hacer_pedido.php" class="btn btn-secondary btn-block mt-2">Comprar</a>
+                                    <a href="compraU.php?producto=<?php echo urlencode($producto['titulo']); ?>&precio=<?php echo urlencode($producto['precio']); ?>&aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>
                                 </form>
                             </div>
                         </div>
@@ -129,9 +129,9 @@ mysqli_close($conn);
                         <ul class="list-group">
                             <?php foreach ($_SESSION['carrito'] as $index => $item) : ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                     Producto: <?php echo htmlspecialchars($item['nombre']); ?> - <?php echo htmlspecialchars($item['precio']); ?>$ Cantidad: <?php echo htmlspecialchars($item['cantidad']); ?>
+                                    Producto: <?php echo htmlspecialchars($item['nombre']); ?> - <?php echo htmlspecialchars($item['precio']); ?>$ Cantidad: <?php echo htmlspecialchars($item['cantidad']); ?>
                                     <span>
-                                        <a href="../../../modelo/usuarios/carrito/carritoAn.php?eliminar=<?php echo $index; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                                        <a href="../../../modelo/usuarios/carrito/carritoAu.php?eliminar=<?php echo $index; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                                     </span>
                                 </li>
                             <?php endforeach; ?>

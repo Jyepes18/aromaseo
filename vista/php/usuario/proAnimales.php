@@ -102,7 +102,7 @@ mysqli_close($conn);
                                     <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>">
                                     <input type="hidden" name="cantidad" value="1">
                                     <button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>
-                                    <a href="compraU.php?aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>
+                                    <a href="compraU.php?producto=<?php echo urlencode($producto['titulo']); ?>&precio=<?php echo urlencode($producto['precio']); ?>&aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>
                                 </form>
                             </div>
                         </div>
@@ -158,7 +158,6 @@ mysqli_close($conn);
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 
 </body>
 
