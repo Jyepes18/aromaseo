@@ -120,7 +120,8 @@ include("../../../modelo/sessiones/verificacion.php");
                     </a>
                 </div>
                 <div class="submenu">
-                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">Pedidos</a>
+                    <a href="vender.php" class="link submenu-title">Pedidos</a>
+                    <a href="../../../modelo/administrador/pedidos/datos.php" class="link submenu-title">Ver datos</a>
                 </div>
             </li>
 
