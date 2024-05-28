@@ -114,15 +114,13 @@ include("../../../modelo/sessiones/verificacion.php");
 
             <li class="dropdown">
                 <div class="title">
-                    <a href="vender.php" class="link">
-                    <i class='bx bx-clipboard'></i>
-                        <span class="name">Pedido</span>
+                    <a href="../../../modelo/administrador/pedidos/datos.php" class="link">
+                        <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedidos</span>
                     </a>
-                    <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="vender.php" class="link submenu-title">Pedido</a>
-                    <a href="../../../modelo/administrador/pedidos/datos.php" class="link">Ver datos</a>
+                    <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">Pedidos</a>
                 </div>
             </li>
 

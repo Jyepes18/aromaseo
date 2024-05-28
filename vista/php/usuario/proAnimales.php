@@ -29,6 +29,7 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/formularios.css" />
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../node_modules/boxicons/css/boxicons.min.css">
     <link rel="shortcut icon" href="../../img/index/lg.png" />
     <title>Animales</title>
     <style>
@@ -69,11 +70,16 @@ mysqli_close($conn);
                         </a>
                     </li>
                     <li>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                             </svg>
                         </button>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class='bx bxs-brush-alt bx-tada'>Pesonaliza tu producto</i>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -141,7 +147,7 @@ mysqli_close($conn);
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    <a href="../../../" class="btn btn-secondary">Proceder al pago</a>
+                    <a href="compraC.php" class="btn btn-secondary">Proceder al pago</a>
                 </div>
             </div>
         </div>
@@ -158,7 +164,7 @@ mysqli_close($conn);
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

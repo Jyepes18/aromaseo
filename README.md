@@ -1,1 +1,1 @@
-Descargar con npm bootstrap 5 y bootstrap icon y tambien una libreria llamada swelAlert
+Descargar con npm bootstrap 5, bootstrap icon, libreria llamada swelAlert y la libreria de boxicons con npm
