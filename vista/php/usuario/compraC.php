@@ -43,7 +43,7 @@ include("../../../modelo/sessiones/verificacion.php");
     <div class="d-flex justify-content-center">
         <div class="form">
             <div class="row">
-                <form action="../../../modelo/usuarios/compra/añadir.php" class="row g-3" method="post" onsubmit="return validar();">
+                <form action="../../../modelo/usuarios/compra/añadirC.php" class="row g-3" method="post" onsubmit="return validar();">
                     <h1 class="form_title">Compra de productos</h1>
                     <div class="col-md-6 form-floating">
                         <input type="text" readonly class="form-control" id="nombre" name="nombre" placeholder="Nombre" autocomplete="name" value="<?php echo isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : 'N/A'; ?>" />
@@ -57,6 +57,16 @@ include("../../../modelo/sessiones/verificacion.php");
                     <div class="col-md-6 form-floating">
                         <input type="email" readonly class="form-control" id="correo" name="correo" placeholder="name@example.com" autocomplete="email" value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo']) : 'N/A'; ?>" />
                         <label for="correo">Correo</label>
+                    </div>
+
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" autocomplete="address-level1" />
+                        <label for="direccion">Dirección</label>
+                    </div>
+
+                    <div class="col-md-6 form-floating">
+                        <input type="date" class="form-control" id="dia" name="fecha" placeholder="Día" autocomplete="address-level1" />
+                        <label for="dia">Día</label>
                     </div>
 
                     <?php if (!empty($_SESSION['carrito'])) : ?>
@@ -126,12 +136,10 @@ include("../../../modelo/sessiones/verificacion.php");
         }
 
         function validar() {
-            var direccion, dia, cantidad, precio;
+            var direccion, dia;
 
             direccion = document.getElementById("direccion").value.trim();
             dia = document.getElementById("dia").value;
-            cantidad = parseFloat(document.getElementById('cantidad').value);
-            precio = parseFloat(document.getElementById('precio').value);
 
             var exprecionParaDirecciones = /^[a-zA-Z0-9\s#-]+$/;
             var fechaActual = new Date();
@@ -151,18 +159,6 @@ include("../../../modelo/sessiones/verificacion.php");
             } else if (!exprecionParaDirecciones.test(direccion)) {
                 Swal.fire({
                     text: "La dirección no es válida. Solo se aceptan caracteres alfanuméricos y '#' y '-'",
-                    icon: "error"
-                });
-                return false;
-            } else if (isNaN(cantidad) || cantidad <= 0) {
-                Swal.fire({
-                    text: "La cantidad no es válida. Por favor ingresa un número mayor a 0.",
-                    icon: "error"
-                });
-                return false;
-            } else if (isNaN(precio) || precio <= 0) {
-                Swal.fire({
-                    text: "El precio no es válido. Por favor ingresa un número mayor a 0.",
                     icon: "error"
                 });
                 return false;

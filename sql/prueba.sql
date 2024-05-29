@@ -78,10 +78,3 @@ CREATE TABLE IF NOT EXISTS compra (
     cantidad INT NOT NULL,
     total DECIMAL(10, 2) NOT NULL
 );
-
-CREATE TABLE IF NOT EXISTS domicilio (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    domicilio VARCHAR(255) NOT NULL,
-    compra_id INT,
-    FOREIGN KEY (compra_id) REFERENCES compra(id) ON DELETE CASCADE
-);

@@ -36,20 +36,6 @@ if (isset($_POST['solicitar'])) {
         die("Error en el registro: " . $stmt->error);
     }
 
-    // Obtener el ID de la compra insertada
-    $compra_id = $conn->insert_id;
-
-    // Insertar el domicilio
-    $stmt_domicilio = $conn->prepare("INSERT INTO domicilio (domicilio, compra_id) VALUES (?, ?)");
-    if ($stmt_domicilio === false) {
-        die("Error al preparar la consulta del domicilio: " . $conn->error);
-    }
-    $stmt_domicilio->bind_param("si", $domicilio, $compra_id);
-
-    if (!$stmt_domicilio->execute()) {
-        die("Error en el registro del domicilio: " . $stmt_domicilio->error);
-    }
-
     header("Location: ../../../vista/php/usuario/indexDos.php");
     exit();
 }

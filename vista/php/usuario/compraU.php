@@ -113,7 +113,7 @@ $precio = isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '';
                 Swal.fire({
                     icon: 'info',
                     title: 'Atención',
-                    text: 'Si el pedido es mayor a 100 mil pesos, el envío es gratis; de lo contrario, se paga 10 mil pesos de envío.',
+                    text: 'Si el pedido es mayor a 100 mil pesos, el envío es gratis; de lo contrario, se paga 10 mil pesos de envío. (El pedido es contra entrega)',
                     confirmButtonText: '¡Entendido!',
                     confirmButtonColor: "#4CB2F8"
                 });
