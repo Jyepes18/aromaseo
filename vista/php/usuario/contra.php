@@ -48,7 +48,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="respuesta" id="respuesta" placeholder="Respuesta" autocomplete="on" aria-label="Respuesta" />
-                    <label for="respuesta">Respuesta</label>
+                    <label for="respuesta">Palabra clave</label>
                 </div>
 
                 <div class="form-floating mb-4 position-relative">

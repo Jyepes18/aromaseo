@@ -2,23 +2,6 @@
 include("../../../modelo/sessiones/verificacion.php");
 include("../../../modelo/conexion.php");
 
-//Consulta sql 
-$sql = "SELECT id, imagen, titulo, precio, descripcion FROM productosanimales";
-$resultado = mysqli_query($conn, $sql);
-
-// Verificar si hay resultados
-if (mysqli_num_rows($resultado) > 0) {
-    // Array para almacenar los productos
-    $productos = array();
-
-    // Obtener los productos de la consulta
-    while ($row = mysqli_fetch_assoc($resultado)) {
-        $productos[] = $row;
-    }
-}
-
-// Cerrar la conexión
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -98,34 +81,56 @@ mysqli_close($conn);
             </form>
         </div>
         <br><br>
-        <?php if (!empty($productos)) : ?>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <?php foreach ($productos as $producto) : ?>
-                    <div class="col-12 col-md-4">
-                        <div class="card h-100">
-                            <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="card-img-top" alt="Productos para animales">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($producto['titulo']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
-                                <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
-                            </div>
-                            <div class="card-footer">
-                                <form action="../../../modelo/usuarios/carrito/carritoAn.php" method="post" class="mt-auto">
-                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($producto['id']); ?>">
-                                    <input type="hidden" name="nombre" value="<?php echo htmlspecialchars($producto['titulo']); ?>">
-                                    <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>">
-                                    <input type="hidden" name="cantidad" value="1">
-                                    <button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>
-                                    <a href="compraU.php?producto=<?php echo urlencode($producto['titulo']); ?>&precio=<?php echo urlencode($producto['precio']); ?>&aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+
+        <?php
+        if (isset($_POST['enviar'])) {
+            // Obtener el valor de búsqueda
+            $busqueda = $_POST['busqueda'];
+
+            // Preparar la consulta SQL
+            $consulta = $conn->prepare("SELECT * FROM productosanimales WHERE titulo LIKE ? OR descripcion LIKE ? OR precio LIKE ?");
+            $busqueda_param = "%$busqueda%";
+            $consulta->bind_param("sss", $busqueda_param, $busqueda_param, $busqueda_param);
+
+            // Ejecutar la consulta
+            $consulta->execute();
+
+            // Obtener los resultados
+            $resultado = $consulta->get_result();
+
+            // Mostrar los resultados
+            while ($producto = $resultado->fetch_assoc()) {
+                echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                echo '<div class="col-12 col-md-4">';
+                echo '<div class="card h-100">';
+                echo '<img src="' . htmlspecialchars($producto['imagen']) . '" class="card-img-top" alt="Productos para animales">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . htmlspecialchars($producto['titulo']) . '</h5>';
+                echo '<p class="card-text">' . htmlspecialchars($producto['descripcion']) . '</p>';
+                echo '<p class="card-text">Precio: ' . htmlspecialchars($producto['precio']) . '</p>';
+                echo '</div>';
+                echo '<div class="card-footer">';
+                echo '<form action="../../../modelo/usuarios/carrito/carritoAn.php" method="post" class="mt-auto">';
+                echo '<input type="hidden" name="id" value="' . htmlspecialchars($producto['id']) . '">';
+                echo '<input type="hidden" name="nombre" value="' . htmlspecialchars($producto['titulo']) . '">';
+                echo '<input type="hidden" name="precio" value="' . htmlspecialchars($producto['precio']) . '">';
+                echo '<input type="hidden" name="cantidad" value="1">';
+                echo '<button type="submit" name="agregar" class="btn btn-primary btn-block">Añadir al carrito</button>';
+                echo '<a href="compraU.php?producto=' . urlencode($producto['titulo']) . '&precio=' . urlencode($producto['precio']) . '&aviso=Compra" class="btn btn-secondary btn-block mt-2">Comprar</a>';
+                echo '</form>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+        ?>
+        <?php
+        if ($resultado->num_rows > 0) : ?>
+            <p>Se encontro esto</p>
         <?php else : ?>
-            <p class="text-center h3">No hay productos disponibles.</p>
-        <?php endif; ?>
+            <p class="text-center text-danger h3 ">No se han encontrado resultados</p>
+        <?php endif  ?>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -160,15 +165,6 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
-    <?php
-    if (isset($_SESSION['mensaje_error'])) {
-        echo '<div class="alert alert-danger" role="alert">';
-        echo $_SESSION['mensaje_error'];
-        echo '</div>';
-        // Elimina el mensaje de la sesión para que no se muestre de nuevo
-        unset($_SESSION['mensaje_error']);
-    }
-    ?>
 
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

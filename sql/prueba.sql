@@ -78,3 +78,21 @@ CREATE TABLE IF NOT EXISTS compra (
     cantidad INT NOT NULL,
     total DECIMAL(10, 2) NOT NULL
 );
+
+
+CREATE TABLE IF NOT EXISTS compraRealizada (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    producto VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    fecha DATE NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    cantidad INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL
+);
+
+
+
+

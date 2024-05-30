@@ -185,8 +185,7 @@ GROUP BY correo, fecha, persona;";
                                             <th>Datos</th>
                                             <th>Total de productos</th>
                                             <th>Domicilio</th>
-                                            <th>Operacion</th>
-
+                                            <th>Entregado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,13 +213,12 @@ GROUP BY correo, fecha, persona;";
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <button onclick="ocultarRegistro(1)" class="btn btn-success">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                                    <a href="entregado.php?id=<?php echo $row["id"]; ?>" class="btn btn-success">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
                                                         </svg>
-                                                    </button>
+                                                    </a>
                                                 </td>
-
                                             </tr>
                                         <?php
                                         }
@@ -229,13 +227,6 @@ GROUP BY correo, fecha, persona;";
                                     </tbody>
 
                                 </table>
-
-                                <button onclick="regresar(1)" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-                                    </svg>
-                                </button>
-
                             </div>
                         </div>
                     </div>
@@ -243,80 +234,9 @@ GROUP BY correo, fecha, persona;";
             </div>
         </div>
 
-
-
     </section>
 
     <script src="../../../controlador/administrador/adminis.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Cargar el estado de las filas desde localStorage
-            var hiddenRows = JSON.parse(localStorage.getItem('hiddenRows')) || [];
-            hiddenRows.forEach(function(id) {
-                var row = document.getElementById('row-' + id);
-                if (row) {
-                    row.style.display = 'none';
-                }
-            });
-        });
-
-        function ocultarRegistro(id) {
-            // Encontrar la fila correspondiente
-            var row = document.getElementById('row-' + id);
-            if (row) {
-                row.style.display = 'none'; // Ocultar la fila en la interfaz de usuario
-
-                // Guardar el estado en localStorage
-                var hiddenRows = JSON.parse(localStorage.getItem('hiddenRows')) || [];
-                if (!hiddenRows.includes(id)) {
-                    hiddenRows.push(id);
-                    localStorage.setItem('hiddenRows', JSON.stringify(hiddenRows));
-                }
-
-                // Enviar solicitud AJAX para actualizar el estado del registro en la base de datos
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "ocultar.php?id=" + id, true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log("Registro ocultado exitosamente");
-                    }
-                };
-                xhr.send();
-            } else {
-                console.error("Fila no encontrada para el ID: " + id);
-            }
-        }
-
-        function regresar(id) {
-            // Encontrar la fila correspondiente
-            var row = document.getElementById('row-' + id);
-            if (row) {
-                row.style.display = ''; // Mostrar la fila en la interfaz de usuario
-
-                // Actualizar el estado en localStorage
-                var hiddenRows = JSON.parse(localStorage.getItem('hiddenRows')) || [];
-                var index = hiddenRows.indexOf(id);
-                if (index !== -1) {
-                    hiddenRows.splice(index, 1);
-                    localStorage.setItem('hiddenRows', JSON.stringify(hiddenRows));
-                }
-
-                // Enviar solicitud AJAX para actualizar el estado del registro en la base de datos
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "mostrar.php?id=" + id, true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log("Registro mostrado exitosamente");
-                    }
-                };
-                xhr.send();
-            } else {
-                console.error("Fila no encontrada para el ID: " + id);
-            }
-        }
-    </script>
-
-
 
 </body>
 

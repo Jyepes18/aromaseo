@@ -90,6 +90,13 @@ mysqli_close($conn);
     </header>
 
     <div class="container mt-4">
+        <div class="container-fluid">
+            <form class="d-flex input" action="busquedaHogar.php" method="post">
+                <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda">
+                <button class="btn btn-outline-primary" type="submit" name="enviar"><b>Buscar</b></button>
+            </form>
+        </div>
+        <br><br>
         <?php if (!empty($productos)) : ?>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php foreach ($productos as $producto) : ?>

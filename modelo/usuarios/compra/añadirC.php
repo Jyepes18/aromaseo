@@ -30,7 +30,7 @@ if (isset($_POST['solicitar'])) {
     foreach ($_SESSION['carrito'] as $index => $item) {
         $producto = htmlspecialchars($item['nombre']);
         $precio = (float)$item['precio'];
-        $cantidad = (int)$item['cantidad'];
+        $cantidad = (int)$_POST['cantidad_' . $item['id']]; // Corregido para obtener la cantidad del formulario
 
         // Insertar datos en la tabla compra
         $sql_compra = "INSERT INTO compra (nombre, apellido, producto, correo, direccion, fecha, precio, cantidad, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -45,7 +45,6 @@ if (isset($_POST['solicitar'])) {
             die("Error en el registro de compra: " . $stmt_compra->error);
         }
     }
-
 
     // Redireccionar después de la inserción
     header("Location: ../../../vista/php/usuario/indexDos.php");

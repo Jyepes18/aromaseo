@@ -84,6 +84,11 @@ include("../../../modelo/sessiones/verificacion.php");
                     <p>
                         <i class='bx bxs-exit bx-rotate-180'></i><a href="../../../modelo/sessiones/cerrar.php"> Salir</a>
                     </p>
+
+                    <p>
+                        <i class='bx bxs-cart-download bx-fade-left'></i><a href="productos.php">Ver productos comprados</a>
+                    </p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -91,8 +96,6 @@ include("../../../modelo/sessiones/verificacion.php");
             </div>
         </div>
     </div>
-
-
 
     <div class="wrapper">
         <div class="card">

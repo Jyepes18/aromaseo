@@ -77,9 +77,10 @@ include("../../../modelo/sessiones/verificacion.php");
                             </div>
 
                             <div class="col-md-6 form-floating">
-                                <input type="number" class="form-control" id="cantidad_<?php echo $index; ?>" name="cantidad_<?php echo $index; ?>" placeholder="Cantidad" autocomplete="name" value="<?php echo htmlspecialchars($item['cantidad']); ?>" onchange="calcularPrecioTotal()" />
-                                <label for="cantidad_<?php echo $index; ?>">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidad_<?php echo $item['id']; ?>" name="cantidad_<?php echo $item['id']; ?>" placeholder="Cantidad" autocomplete="name" value="<?php echo htmlspecialchars($item['cantidad']); ?>" onchange="calcularPrecioTotal()" />
+                                <label for="cantidad_<?php echo $item['id']; ?>">Cantidad</label>
                             </div>
+
 
                             <div class="col-md-6 form-floating">
                                 <input type="number" readonly class="form-control" id="precio_<?php echo $index; ?>" name="precio_<?php echo $index; ?>" placeholder="Precio" autocomplete="cc-number" value="<?php echo htmlspecialchars($item['precio']); ?>" onchange="calcularPrecioTotal()" />
@@ -128,12 +129,22 @@ include("../../../modelo/sessiones/verificacion.php");
         function calcularPrecioTotal() {
             var total = 0;
             <?php foreach ($_SESSION['carrito'] as $index => $item) : ?>
-                var precio_<?php echo $index; ?> = parseFloat(document.getElementById('precio_<?php echo $index; ?>').value);
-                var cantidad_<?php echo $index; ?> = parseFloat(document.getElementById('cantidad_<?php echo $index; ?>').value);
-                total += precio_<?php echo $index; ?> * cantidad_<?php echo $index; ?>;
+                var precio = parseFloat(document.getElementById('precio_<?php echo $index; ?>').value);
+                var cantidad = parseFloat(document.getElementById('cantidad_<?php echo $item['id']; ?>').value);
+                total += precio * cantidad;
             <?php endforeach; ?>
             document.getElementById("total").value = total.toFixed(2);
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php if (!empty($_SESSION['carrito'])) : ?>
+                <?php foreach ($_SESSION['carrito'] as $index => $item) : ?>
+                    document.getElementById('cantidad_<?php echo $item['id']; ?>').addEventListener('input', function() {
+                        calcularPrecioTotal();
+                    });
+                <?php endforeach; ?>
+            <?php endif; ?>
+        });
 
         function validar() {
             var direccion, dia;
