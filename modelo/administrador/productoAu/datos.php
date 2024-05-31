@@ -117,6 +117,20 @@ $proAnimales = "SELECT * FROM productosautos"
 
             <li class="dropdown">
                 <div class="title">
+                    <a href="../../../vista/php/administrador/vender.php" class="link">
+                        <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedido</span>
+                    </a>
+                    <i class='bx bxs-chevron-down'></i>
+                </div>
+                <div class="submenu">
+                    <a href="../../../vista/php/administrador/vender.php" class="link submenu-title">Pedido</a>
+                    <a href="../pedidos/datos.php" class="link">Ver datos</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
                     <a href="../../../modelo/sessiones/cerrar.php" class="link">
                         <i class='bx bxs-exit bx-rotate-180'></i>
                         <span class="name">Salir</span>
@@ -182,7 +196,7 @@ $proAnimales = "SELECT * FROM productosautos"
                                                     <?php echo $row["titulo"]; ?>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" readonly style="min-height: 160px; max-height: 160px;"><?php echo $row["descripcion"];?></textarea>
+                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" readonly style="min-height: 160px; max-height: 160px;"><?php echo $row["descripcion"]; ?></textarea>
                                                 </td>
                                                 <td>
                                                     <?php echo $row["precio"]; ?>
@@ -264,8 +278,6 @@ $proAnimales = "SELECT * FROM productosautos"
                 }, 1000);
             }
         });
-
-
     </script>
 
 </body>

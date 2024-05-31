@@ -101,13 +101,27 @@ include("../../../modelo/sessiones/verificacion.php");
             <li class="dropdown">
                 <div class="title">
                     <a href="../../../modelo/administrador/pqrs/datos.php" class="link">
-                        <i class='bx bxs-comment-error bx-flip-horizontal'></i>
+                        <i class='bx bxs-comment-error bx-flip-horizontal '></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
                     <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">PQRS</a>
 
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
+                    <a href="vender.php" class="link">
+                        <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedido</span>
+                    </a>
+                    <i class='bx bxs-chevron-down'></i>
+                </div>
+                <div class="submenu">
+                    <a href="vender.php" class="link submenu-title">Pedido</a>
+                    <a href="../../../modelo/administrador/pedidos/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -123,12 +137,8 @@ include("../../../modelo/sessiones/verificacion.php");
 
                 </div>
             </li>
-
-
         </ul>
-
     </div>
-
     <!--Home section-->
     <section class="home">
         <div class="toggle-sidebar">

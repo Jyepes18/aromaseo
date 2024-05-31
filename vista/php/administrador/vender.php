@@ -1,6 +1,7 @@
 <?php
 //Archivo para verificar sesion
 include("../../../modelo/sessiones/verificacion.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -144,11 +145,155 @@ include("../../../modelo/sessiones/verificacion.php");
     <section class="home">
         <div class="toggle-sidebar">
             <i class='bx bx-menu'></i>
-            <div class="text">
+            <div class="text"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <form action="../../../modelo/administrador/compra/añadir.php" method="post" class="mt-4" id="formulario">
+                    <h1 class="text-center mt-3">Registrar una nueva venta</h1>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="apellido" class="form-label">Apellido:</label>
+                            <input type="text" class="form-control" name="apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label for="producto" class="form-label">Producto:</label>
+                            <input type="text" class="form-control" id="producto" name="producto[]" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cantidad" class="form-label">Cantidad:</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad[]" min="1" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="precio" class="form-label">Precio unitario:</label>
+                            <input type="number" class="form-control" id="precio" name="precio[]" min="0.01" step="0.01" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="total">Total:</label>
+                            <input type="text" class="form-control total" name="total[]" id="totalProducto0">
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                            <input type="date" class="form-control" name="fecha" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccion" class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" name="direccion" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <label for="email" class="form-label">Correo electrónico:</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                    </div>
+
+
+                    <div class="d-grid gap-2 mt-4">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary mt-3" id="agregarCampo">Añadir Producto</button>
+                        </div>
+                        <button type="submit" name="registrar" class="btn btn-primary">Registrar Venta</button>
+                        <div class="col-md-6 mt-4">
+                            <label for="totalG" class="form-label">Total general:</label>
+                            <input type="text" class="form-control" id="totalG" readonly require>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
+
+
     <script src="../../../controlador/administrador/adminis.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var totalGenerado = document.getElementById('totalG');
+            var formulario = document.getElementById('formulario');
+            var btnAgregarCampo = document.getElementById('agregarCampo');
+            var camposCantidad = document.querySelectorAll('input[name^="cantidad"]');
+            var camposPrecio = document.querySelectorAll('input[name^="precio"]');
+            var camposTotales = document.querySelectorAll('.total');
+
+            function agregarEventos() {
+                camposCantidad.forEach(function(campoCantidad, index) {
+                    campoCantidad.addEventListener('input', function() {
+                        calcularTotal(index);
+                        calcularTotalGeneral();
+                    });
+                });
+
+                camposPrecio.forEach(function(campoPrecio, index) {
+                    campoPrecio.addEventListener('input', function() {
+                        calcularTotal(index);
+                        calcularTotalGeneral();
+                    });
+                });
+            }
+
+            function calcularTotal(index) {
+                var cantidad = parseFloat(camposCantidad[index].value) || 0;
+                var precio = parseFloat(camposPrecio[index].value) || 0;
+                camposTotales[index].value = (cantidad * precio).toFixed(2);
+            }
+
+            function calcularTotalGeneral() {
+                var total = 0;
+                camposTotales.forEach(function(campoTotal) {
+                    total += parseFloat(campoTotal.value) || 0;
+                });
+                totalGenerado.value = total.toFixed(2);
+            }
+
+            btnAgregarCampo.addEventListener('click', function() {
+                var divCampos = document.createElement('div'); 
+                divCampos.classList.add('row', 'g-3'); 
+                var index = camposCantidad.length; 
+                divCampos.innerHTML = `
+                    <div class="col-md-6">
+                        <label for="producto">Producto:</label>
+                        <input type="text" class="form-control" name="producto[]" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" class="form-control" name="cantidad[]" min="1" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="precio">Precio unitario:</label>
+                        <input type="number" class="form-control" name="precio[]" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="total">Total:</label>
+                        <input type="text" class="form-control total" name="total[]">
+                    </div>`;
+                formulario.insertBefore(divCampos, formulario.lastElementChild); // Inserta los nuevos campos antes del último elemento del formulario
+
+                // Actualiza la lista de campos
+                camposCantidad = document.querySelectorAll('input[name^="cantidad"]');
+                camposPrecio = document.querySelectorAll('input[name^="precio"]');
+                camposTotales = document.querySelectorAll('.total');
+
+                agregarEventos();
+            });
+
+            agregarEventos();
+        });
+    </script>
+
+
 </body>
 
 </html>

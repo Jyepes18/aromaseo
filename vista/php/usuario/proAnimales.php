@@ -76,11 +76,6 @@ mysqli_close($conn);
                             </svg>
                         </button>
                     </li>
-                    <li>
-                        <a href="">
-                            <i class='bx bxs-brush-alt bx-tada'>Pesonaliza tu producto</i>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -155,7 +150,10 @@ mysqli_close($conn);
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    <a href="compraC.php?aviso=Compra" class="btn btn-secondary">Proceder al pago</a>
+                    <?php
+                    if (!empty($_SESSION['carrito'])) : ?>
+                        <a href="compraC.php?aviso=Compra" class="btn btn-secondary">Proceder al pago</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

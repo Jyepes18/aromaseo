@@ -237,6 +237,27 @@ include("../../../modelo/sessiones/verificacion.php");
     </footer>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var error = urlParams.get('aviso');
+
+        // Si el parámetro 'aviso' es igual a 'ErrorCompra'
+        if (error === 'ErrorCompra') {
+            // Espera 1000 milisegundos (1 segundo) antes de mostrar el mensaje de error
+            setTimeout(function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lo sentimos',
+                    text: 'El producto seleccionado está agotado',
+                });
+            }, 1000);
+        }
+    });
+</script>
+
+
 </body>
 
 </html>

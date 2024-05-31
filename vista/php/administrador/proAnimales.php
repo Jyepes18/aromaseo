@@ -16,8 +16,8 @@ include("../../../modelo/sessiones/verificacion.php");
 </head>
 
 <body>
-    <div class="sidebar close">
-        <!-- Logo -->
+<div class="sidebar close">
+        <!--Logo-->
         <a href="#" class="logo-box">
             <i class='bx bxs-user-circle'></i>
             <div class="logo-name">
@@ -27,7 +27,7 @@ include("../../../modelo/sessiones/verificacion.php");
             </div>
         </a>
 
-        <!-- Lista -->
+        <!--Lista-->
         <ul class="sidebar-list">
             <li>
                 <div class="title">
@@ -35,6 +35,7 @@ include("../../../modelo/sessiones/verificacion.php");
                         <i class='bx bxs-grid-alt'></i>
                         <span class="name">Dashboard</span>
                     </a>
+
                 </div>
                 <div class="submenu">
                     <a href="administrador.php" class="link submenu-title">Dashboard</a>
@@ -73,12 +74,12 @@ include("../../../modelo/sessiones/verificacion.php");
                 <div class="title">
                     <a href="proAutos.php" class="link">
                         <i class='bx bxs-car'></i>
-                        <span class="name">Productos Automóviles</span>
+                        <span class="name">Productos Automoviles</span>
                     </a>
                     <i class='bx bxs-chevron-down'></i>
                 </div>
                 <div class="submenu">
-                    <a href="proAutos.php" class="link submenu-title">Productos Automóviles</a>
+                    <a href="proAutos.php" class="link submenu-title">Productos Automoviles</a>
                     <a href="../../../modelo/administrador/productoAu/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
@@ -100,12 +101,27 @@ include("../../../modelo/sessiones/verificacion.php");
             <li class="dropdown">
                 <div class="title">
                     <a href="../../../modelo/administrador/pqrs/datos.php" class="link">
-                        <i class='bx bxs-comment-error bx-flip-horizontal'></i>
+                        <i class='bx bxs-comment-error bx-flip-horizontal '></i>
                         <span class="name">PQRS</span>
                     </a>
                 </div>
                 <div class="submenu">
                     <a href="../../../modelo/administrador/pqrs/datos.php" class="link submenu-title">PQRS</a>
+
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
+                    <a href="vender.php" class="link">
+                    <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedido</span>
+                    </a>
+                    <i class='bx bxs-chevron-down'></i>
+                </div>
+                <div class="submenu">
+                    <a href="vender.php" class="link submenu-title">Pedido</a>
+                    <a href="../../../modelo/administrador/pedidos/datos.php" class="link">Ver datos</a>
                 </div>
             </li>
 
@@ -118,6 +134,7 @@ include("../../../modelo/sessiones/verificacion.php");
                 </div>
                 <div class="submenu">
                     <a href="../../../modelo/sessiones/cerrar.php" class="link submenu-title">Salir</a>
+
                 </div>
             </li>
         </ul>

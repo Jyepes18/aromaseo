@@ -118,6 +118,20 @@ $proAnimales = "SELECT * FROM productosanimales"
 
             <li class="dropdown">
                 <div class="title">
+                    <a href="../../../vista/php/administrador/vender.php" class="link">
+                        <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedido</span>
+                    </a>
+                    <i class='bx bxs-chevron-down'></i>
+                </div>
+                <div class="submenu">
+                    <a href="../../../vista/php/administrador/vender.php" class="link submenu-title">Pedido</a>
+                    <a href="../pedidos/datos.php" class="link">Ver datos</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
                     <a href="../../../modelo/sessiones/cerrar.php" class="link">
                         <i class='bx bxs-exit bx-rotate-180'></i>
                         <span class="name">Salir</span>

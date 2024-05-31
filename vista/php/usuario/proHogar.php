@@ -76,11 +76,6 @@ mysqli_close($conn);
                             </svg>
                         </button>
                     </li>
-                    <li>
-                        <a href="">
-                            <i class='bx bxs-brush-alt bx-tada'>Pesonaliza tu producto</i>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>

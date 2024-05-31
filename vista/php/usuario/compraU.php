@@ -17,7 +17,6 @@ $precio = isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '';
     <title>Compra de productos</title>
 </head>
 
-<body onload="calcularPrecioTotal()">
     <header>
         <div class="menu container">
             <a href="#" class="logo"></a>

@@ -27,9 +27,29 @@ FROM compra
 GROUP BY correo, fecha, persona;";
 
 
-
+$compraRealizada = "SELECT 
+MIN(id) AS id,
+CONCAT(nombre, ' ', apellido) AS persona,
+correo,
+GROUP_CONCAT(
+    CONCAT(
+        'Direccion: ', direccion, '<br>',
+        'Fecha: ', fecha, '<br>',
+        'Producto: ', producto, '<br>',
+        'Cantidad: ', cantidad, '<br>',
+        'Precio: ', precio, '<br>'
+    ) SEPARATOR '<br><br>'
+) AS datos,
+SUM(precio) AS total_productos,
+CASE 
+    WHEN SUM(precio) >= 100000 THEN 'Gratis'
+    ELSE 'Pagado'
+END AS estado_pago
+FROM comprarealizada
+GROUP BY correo, fecha, persona;";
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,6 +160,20 @@ GROUP BY correo, fecha, persona;";
 
             <li class="dropdown">
                 <div class="title">
+                    <a href="../../../vista/php/administrador/vender.php" class="link">
+                        <i class='bx bx-clipboard'></i>
+                        <span class="name">Pedido</span>
+                    </a>
+                    <i class='bx bxs-chevron-down'></i>
+                </div>
+                <div class="submenu">
+                    <a href="../../../vista/php/administrador/vender.php" class="link submenu-title">Pedido</a>
+                    <a href="../pedidos/datos.php" class="link">Ver datos</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <div class="title">
                     <a href="../../../modelo/sessiones/cerrar.php" class="link">
                         <i class='bx bxs-exit bx-rotate-180'></i>
                         <span class="name">Salir</span>
@@ -177,6 +211,55 @@ GROUP BY correo, fecha, persona;";
 
                             <!-- Tabla de datos con Bootstrap -->
                             <div class="table-responsive mt-3">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCompra">
+                                    Ventas realizadas
+                                </button>
+
+                                <div class="modal fade" id="modalCompra" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Ventas realizadas</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-bordered">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th class="text-center">Nombre y Apellido</th>
+                                                            <th>Correo</th>
+                                                            <th>Datos</th>
+                                                            <th>Total de productos</th>
+                                                            <th>Domicilio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $resultado = mysqli_query($conn, $compraRealizada);
+                                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                                        ?>
+                                                            <tr>
+                                                                <td><?php echo $row["persona"]; ?></td>
+                                                                <td><?php echo $row["correo"]; ?></td>
+                                                                <td><?php echo $row["datos"]; ?></td>
+                                                                <td class="text-center"><?php echo number_format($row["total_productos"], 2, '.', ','); ?>$</td>
+                                                                <td><?php echo $row["estado_pago"]; ?></td>
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        mysqli_free_result($resultado);
+                                                        ?>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
                                 <table class="table table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
@@ -227,6 +310,7 @@ GROUP BY correo, fecha, persona;";
                                     </tbody>
 
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -237,7 +321,8 @@ GROUP BY correo, fecha, persona;";
     </section>
 
     <script src="../../../controlador/administrador/adminis.js"></script>
-
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
