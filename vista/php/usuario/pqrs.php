@@ -76,7 +76,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
                 <div class="form-floating mb-3">
                     <input type="time" class="form-control" id="hora" name="hora" placeholder="Hora" autocomplete="name" />
-                    <label for="hora">Hora de llegada</label>
+                    <label for="hora">Hora del reclamo</label>
                 </div>
 
                 <div class="form-floating mb-3">
@@ -101,28 +101,71 @@ include("../../../modelo/sessiones/verificacion.php");
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../../controlador/usuario/pqrs.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
-        document.getElementById('correoDos').addEventListener('click', function() {
-            Swal.fire({
-                icon: "info",
-                text: "Escribe tu correo de Gmail o si es el mismo que el de arriba haz caso omiso",
-                footer: "Esto para darte una info via correo gmail"
-            });
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer la fecha y hora actuales
+            let today = new Date();
+            let dia = today.toISOString().split('T')[0];
+            let hora = today.toTimeString().split(' ')[0].slice(0, 5);
 
+            document.getElementById('dia').value = dia;
+            document.getElementById('hora').value = hora;
+        });
+        
         document.getElementById('enviarBtn').addEventListener('click', function(event) {
             event.preventDefault(); // Previene el envío del formulario inmediatamente
 
-            setTimeout(function() {
+            // Validación adicional del formulario
+            if (validar()) {
                 Swal.fire({
                     icon: "info",
                     title: "Enviado",
-                    text: "Te respondemos por vía Gmail"
-                }).then(() => {
-                    document.getElementById('miFormulario').submit();
+                    text: "Te respondemos por vía Gmail",
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirmar',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('miFormulario').submit();
+                    }
                 });
-            }, 1000); // 1000 milisegundos = 1 segundos
+            }
         });
+
+        function validar() {
+            let imagen = document.getElementById('imagen');
+            let descripcion = document.getElementById('descripcion').value.trim();
+
+            // Validar la extensión de la imagen
+            let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(imagen.value)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Por favor, suba un archivo de imagen válido (jpg, jpeg, png).'
+                });
+                imagen.value = '';
+                return false;
+            } else if (imagen.files.length === 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'El campo de la imagen está vacío'
+                });
+                return false;
+            }
+            if (descripcion === "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Por favor, ingrese la descripción de PQRS.'
+                });
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </body>
 

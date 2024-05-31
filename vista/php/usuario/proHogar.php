@@ -3,7 +3,7 @@ include("../../../modelo/sessiones/verificacion.php");
 include("../../../modelo/conexion.php");
 
 //Consulta sql 
-$sql = "SELECT id, imagen, titulo, precio, descripcion FROM productoshogar";
+$sql = "SELECT id, imagen, titulo, precio, cantidad, descripcion FROM productoshogar";
 $resultado = mysqli_query($conn, $sql);
 
 // Verificar si hay resultados
@@ -102,6 +102,7 @@ mysqli_close($conn);
                                 <h5 class="card-title"><?php echo htmlspecialchars($producto['titulo']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                                 <p class="card-text">Precio: <?php echo htmlspecialchars($producto['precio']); ?></p>
+                                <p class="card-text">Cantidad: <?php echo htmlspecialchars($producto['cantidad']); ?></p>
                             </div>
                             <div class="card-footer">
                                 <form action="../../../modelo/usuarios/carrito/carritoHo.php" method="post" class="mt-auto">

@@ -175,6 +175,7 @@ $proAnimales = "SELECT * FROM productosautos"
                                             <th>Titulo</th>
                                             <th>Descripcion</th>
                                             <th>Precio</th>
+                                            <td>Cantidad</td>
                                             <th class="text-center">Operacion</th>
                                         </tr>
                                     </thead>
@@ -200,6 +201,9 @@ $proAnimales = "SELECT * FROM productosautos"
                                                 </td>
                                                 <td>
                                                     <?php echo $row["precio"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row["cantidad"]; ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="editar.php.?id=<?php echo $row["id"]; ?>" class="btn btn-warning">

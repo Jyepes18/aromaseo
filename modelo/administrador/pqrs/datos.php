@@ -191,8 +191,12 @@ $pqrs = "SELECT * FROM pqrs"
                                             <tr>
                                                 <td> <?php echo $row["nombre"]; ?> </td>
                                                 <td> <?php echo $row["apellido"]; ?> </td>
-                                                <td> <?php echo $row["correoDos"]; ?> </td>
-                                                <td> <?php echo $row["direccion"]; ?> </td>
+                                                <td>
+                                                    <?php
+                                                    echo !empty($row["correo"]) ? $row["correo"] : (!empty($row["correoDos"]) ? $row["correoDos"] : "Sin correo disponible");
+                                                    ?>
+                                                </td>
+                                                <td> <?php echo !empty($row['direccion']) ? $row['direccion'] : "El usuario no coloco direccion";  ?> </td>
                                                 <td> <?php echo $row["fecha"]; ?> </td>
                                                 <td class="text-center">
                                                     <?php

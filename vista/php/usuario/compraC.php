@@ -81,7 +81,6 @@ include("../../../modelo/sessiones/verificacion.php");
                                 <label for="cantidad_<?php echo $item['id']; ?>">Cantidad</label>
                             </div>
 
-
                             <div class="col-md-6 form-floating">
                                 <input type="number" readonly class="form-control" id="precio_<?php echo $index; ?>" name="precio_<?php echo $index; ?>" placeholder="Precio" autocomplete="cc-number" value="<?php echo htmlspecialchars($item['precio']); ?>" onchange="calcularPrecioTotal()" />
                                 <label for="precio_<?php echo $index; ?>">Precio</label>
@@ -147,7 +146,7 @@ include("../../../modelo/sessiones/verificacion.php");
         });
 
         function validar() {
-            var direccion, dia;
+            var direccion, dia, cantidadesValidas = true;
 
             direccion = document.getElementById("direccion").value.trim();
             dia = document.getElementById("dia").value;
@@ -180,6 +179,21 @@ include("../../../modelo/sessiones/verificacion.php");
                 });
                 return false;
             } else {
+                <?php if (!empty($_SESSION['carrito'])) : ?>
+                    <?php foreach ($_SESSION['carrito'] as $item) : ?>
+                        var cantidad = document.getElementById('cantidad_<?php echo $item['id']; ?>').value;
+                        if (!/^\d+$/.test(cantidad) || cantidad <= 0 || cantidad >= 50) {
+                            cantidadesValidas = false;
+                        }
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                if (!cantidadesValidas) {
+                    Swal.fire({
+                        text: "Las cantidades deben ser números enteros mayores a 0 y menores a 50.",
+                        icon: "error"
+                    });
+                    return false;
+                }
                 return true;
             }
         }

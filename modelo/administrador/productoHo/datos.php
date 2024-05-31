@@ -172,9 +172,10 @@ $proAnimales = "SELECT * FROM productoshogar"
                                     <thead class="thead-dark">
                                         <tr>
                                             <th class="text-center">Imagen</th>
-                                            <th>titulo</th>
-                                            <th>descripcion</th>
-                                            <th>precio</th>
+                                            <th>Titulo</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
                                             <th class="text-center">Operacion</th>
                                         </tr>
                                     </thead>
@@ -201,6 +202,9 @@ $proAnimales = "SELECT * FROM productoshogar"
                                                 </td>
                                                 <td>
                                                     <?php echo $row["precio"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row["cantidad"]; ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="editar.php.?id=<?php echo $row["id"]; ?>" class="btn btn-warning">
