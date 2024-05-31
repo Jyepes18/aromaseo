@@ -219,6 +219,7 @@ include("../../../modelo/sessiones/verificacion.php");
 
 
     <script src="../../../controlador/administrador/adminis.js"></script>
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var totalGenerado = document.getElementById('totalG');
@@ -259,27 +260,26 @@ include("../../../modelo/sessiones/verificacion.php");
             }
 
             btnAgregarCampo.addEventListener('click', function() {
-                var divCampos = document.createElement('div'); 
-                divCampos.classList.add('row', 'g-3'); 
-                var index = camposCantidad.length; 
+                var divCampos = document.createElement('div');
+                divCampos.classList.add('row', 'g-3');
                 divCampos.innerHTML = `
-                    <div class="col-md-6">
-                        <label for="producto">Producto:</label>
-                        <input type="text" class="form-control" name="producto[]" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" class="form-control" name="cantidad[]" min="1" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="precio">Precio unitario:</label>
-                        <input type="number" class="form-control" name="precio[]" min="0.01" step="0.01" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="total">Total:</label>
-                        <input type="text" class="form-control total" name="total[]">
-                    </div>`;
-                formulario.insertBefore(divCampos, formulario.lastElementChild); // Inserta los nuevos campos antes del último elemento del formulario
+                <div class="col-md-6">
+                    <label for="producto">Producto:</label>
+                    <input type="text" class="form-control" name="producto[]" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" class="form-control" name="cantidad[]" min="1" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="precio">Precio unitario:</label>
+                    <input type="number" class="form-control" name="precio[]" min="0.01" step="0.01" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="total">Total:</label>
+                    <input type="text" class="form-control total" name="total[]">
+                </div>`;
+                formulario.insertBefore(divCampos, formulario.lastElementChild);
 
                 // Actualiza la lista de campos
                 camposCantidad = document.querySelectorAll('input[name^="cantidad"]');
@@ -290,8 +290,104 @@ include("../../../modelo/sessiones/verificacion.php");
             });
 
             agregarEventos();
+
+            formulario.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                var nombre = formulario.querySelector('input[name="nombre"]');
+                var apellido = formulario.querySelector('input[name="apellido"]');
+                var producto = formulario.querySelectorAll('input[name="producto[]"]');
+                var cantidad = formulario.querySelectorAll('input[name="cantidad[]"]');
+                var precio = formulario.querySelectorAll('input[name="precio[]"]');
+                var fecha = formulario.querySelector('input[name="fecha"]');
+                var direccion = formulario.querySelector('input[name="direccion"]');
+                var email = formulario.querySelector('input[name="email"]');
+
+                // Validaciones específicas
+                if (!nombre.value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Campo requerido',
+                        text: 'El campo Nombre es obligatorio.'
+                    });
+                    return;
+                }
+
+                if (!apellido.value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Campo requerido',
+                        text: 'El campo Apellido es obligatorio.'
+                    });
+                    return;
+                }
+
+                for (let i = 0; i < producto.length; i++) {
+                    if (!producto[i].value) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Campo requerido',
+                            text: 'El campo Producto es obligatorio.'
+                        });
+                        return;
+                    }
+                }
+
+                for (let i = 0; i < cantidad.length; i++) {
+                    if (!cantidad[i].value || cantidad[i].value <= 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Campo requerido',
+                            text: 'El campo Cantidad es obligatorio y debe ser mayor que 0.'
+                        });
+                        return;
+                    }
+                }
+
+                for (let i = 0; i < precio.length; i++) {
+                    if (!precio[i].value || precio[i].value <= 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Campo requerido',
+                            text: 'El campo Precio unitario es obligatorio y debe ser mayor que 0.'
+                        });
+                        return;
+                    }
+                }
+
+                if (!fecha.value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Campo requerido',
+                        text: 'El campo Fecha es obligatorio.'
+                    });
+                    return;
+                }
+
+                if (!direccion.value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Campo requerido',
+                        text: 'El campo Dirección es obligatorio.'
+                    });
+                    return;
+                }
+
+                if (!email.value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Campo requerido',
+                        text: 'El campo Correo electrónico es obligatorio.'
+                    });
+                    return;
+                }
+
+                // Si todos los campos son válidos, se puede enviar el formulario
+                formulario.submit();
+            });
         });
     </script>
+
 
 
 </body>
